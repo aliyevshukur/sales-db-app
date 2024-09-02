@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import List from './List';
+import Cart from './Cart';
 
 function App() {
 
-  const [userData, setUserData] = useState<userDataType>({ id: '', name: '', age: 0, email: '' });
+  const [cartItems, setCartItems] = useState<cartItems>({ id: '', name: '', price: '' });
 
-  type userDataType = {
+  type cartItems = {
     id: string,
     name: string,
-    age: number,
-    email: string
+    price: string
   }
 
-  const USER_DATA = [
-    { id: "1", name: "Bill", age: 35, email: "bill@company.com" },
-    { id: "2", name: "Donna", age: 32, email: "donna@home.org" },
+  const CARTITEMS_DATA = [
+    { id: "1", name: "Brokoli", price: "12$" },
+    { id: "2", name: "Donut", price: "42$" },
   ];
 
 
 
   useEffect(() => {
-    const request = indexedDB.open("myDatabase", 1);
+
+    const request = indexedDB.open("cartItemsDatabase", 1);
     let db: any;
 
     request.onupgradeneeded = function (event: any) {
@@ -34,15 +34,16 @@ function App() {
 
     request.onsuccess = function () {
       db = request.result;
-      addData(USER_DATA);
+      addData(CARTITEMS_DATA);
       getData();
     }
+
     request.onerror = function (event) {
       console.error("An error occurred with IndexedDB");
       console.error(event);
     };
 
-    function addData(data: userDataType[]): void {
+    function addData(data: cartItems[]): void {
       let transaction = db.transaction("myObjectStore", "readwrite");
       let objectStore = transaction.objectStore("myObjectStore");
 
@@ -58,13 +59,13 @@ function App() {
       let transaction = db.transaction('myObjectStore', 'readonly');
       let objectStore = transaction.objectStore('myObjectStore');
 
-      let req = objectStore.get('1');
+      let req = objectStore.getAll();
 
       req.onsuccess = function (event: any) {
         let data = event.target.result;
 
         if (data) {
-          setUserData(data);
+          setCartItems(data);
         } else {
           console.log("data not found")
         }
@@ -77,12 +78,12 @@ function App() {
 
   }, []);
 
-
+  console.log("cart items" + JSON.stringify(cartItems));
 
   return (
     <div className="App">
       <header className="App-header">
-        <List userData={userData} />
+        {/* <Cart cartItems={cartItems} /> */}
       </header>
     </div>
   );
