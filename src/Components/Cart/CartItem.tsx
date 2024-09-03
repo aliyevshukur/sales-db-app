@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import './CartItem.css';
 
 interface Props {
     name: string,
@@ -8,7 +9,7 @@ interface Props {
 export default function CartItem({ name, price }: Props) {
 
     return (
-        <div>
+        <div className='cartItem'>
             <div>{name}</div>
             <div>{price}</div>
         </div>

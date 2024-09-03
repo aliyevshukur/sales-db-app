@@ -1,0 +1,24 @@
+.cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #cacaca;
+  border-radius: 8px;
+  margin: 32px;
+  padding: 10px;
+}
+
+.cartHeader {
+  text-align: left;
+}
+
+.buttonWrapper {
+  display: flex;
+  margin-top: 30px;
+}
+
+.checkoutButton {
+  margin-left: 20px;
+}
