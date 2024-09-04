@@ -22,3 +22,7 @@
 .checkoutButton {
   margin-left: 20px;
 }
+
+.totalPrice {
+  text-align: start;
+}

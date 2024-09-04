@@ -1,0 +1,13 @@
+.productsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 16px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #cacaca;
+  border-radius: 8px;
+  margin: 30px;
+  width: 100%;
+  gap: 8%;
+}
