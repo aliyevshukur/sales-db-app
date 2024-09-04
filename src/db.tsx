@@ -15,6 +15,18 @@ const SHOPITEMS_DATA = [
     { id: "10", name: "Watermelon", price: "5" },
     { id: "11", name: "Milk", price: "2" },
     { id: "12", name: "Bread", price: "2" },
+    { id: "13", name: "Brokoli", price: "2" },
+    { id: "14", name: "Donut", price: "4" },
+    { id: "15", name: "Biscuit", price: "1" },
+    { id: "16", name: "Watermelon", price: "5" },
+    { id: "17", name: "Milk", price: "2" },
+    { id: "18", name: "Bread", price: "2" },
+    { id: "19", name: "Brokoli", price: "2" },
+    { id: "20", name: "Donut", price: "4" },
+    { id: "21", name: "Biscuit", price: "1" },
+    { id: "22", name: "Watermelon", price: "5" },
+    { id: "23", name: "Milk", price: "2" },
+    { id: "24", name: "Bread", price: "2" },
 ];
 
 export interface itemType {

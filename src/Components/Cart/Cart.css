@@ -6,6 +6,9 @@
   border-width: 1px;
   border-color: #cacaca;
   border-radius: 8px;
+  height:fit-content;
+  width: 400px;
+  max-height: 500px;
   margin: 32px;
   padding: 10px;
 }
@@ -25,4 +28,9 @@
 
 .totalPrice {
   text-align: start;
+}
+
+.cartItemWrapper {
+  overflow-y: auto;
+  overflow-x: hidden;
 }

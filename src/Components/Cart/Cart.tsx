@@ -27,7 +27,9 @@ export default function Cart({ cartItems, onClear }: Props) {
     return (
         <div className='cart'>
             <div className='cartHeader'>Shopping cart</div>
-            {cartItems.map((item) => <CartItem name={item.name} price={item.price} />)}
+            <div className='cartItemWrapper'>
+                {cartItems.map((item) => <CartItem name={item.name} price={item.price} />)}
+            </div>
             <div className='totalPrice'>Total price: {calculateTotalPrice()}$</div>
             <div className='buttonWrapper'>
                 <Button title={"Clear"} onClick={onClear} />
