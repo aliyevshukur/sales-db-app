@@ -1,23 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
-import Cart from './Components/Cart/Cart';
-import { initDB, itemType, getData, dbStatusType, deleteStore, clearStore, addSingleItem } from './db';
-import Header from './Components/Header/Header';
-import ProductsWrapper from './Components/Products/ProductsWrapper';
-
-function App() {
+import './Home.css';
+import Cart from '../Components/Cart/Cart';
+import { initDB, itemType, getData, dbStatusType, deleteStore, clearStore, addSingleItem, purchaseType } from '../db';
+import Header from '../Components/Header/Header';
+import ProductsWrapper from '../Components/Products/ProductsWrapper';
 
 
-
+function Home() {
   const [cartItems, setCartItems] = useState<Array<itemType>>([]);
   const [storeItems, setStoreItems] = useState<Array<itemType>>([]);
-  const [dbStatus, setDBStatus] = useState<dbStatusType>('pending');
-
+  const [dbStatus, setDBStatus] = useState<dbStatusType>('open');
 
   useEffect(() => {
-    initDB(setStoreItems, setCartItems, setDBStatus);
-  }, []);
+    initDB({ setDBStatus });
 
+    if (dbStatus === 'open') {
+      getData('shopItemsStore')
+        .then((data) => {
+          setStoreItems(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });;
+    }
+  }, []);
 
   function handleOnClear() {
     if (dbStatus === 'open') {
@@ -31,7 +37,6 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
       <div className='body'>
         <Cart cartItems={cartItems} onClear={handleOnClear} />
         <ProductsWrapper products={storeItems} onPurchase={handleOnPurchase} />
@@ -40,4 +45,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;

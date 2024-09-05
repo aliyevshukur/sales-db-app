@@ -2,13 +2,10 @@ import React from 'react'
 import CartItem from './CartItem'
 import Button from '../Button/Button';
 import './Cart.css';
+import { itemType } from '../../db';
 
 interface Props {
-    cartItems: {
-        id: string,
-        name: string,
-        price: string
-    }[];
+    cartItems: itemType[];
     onClear: () => void
 };
 

@@ -1,7 +1,5 @@
 import React from 'react'
 
-const CARTITEMS_DATA = [];
-
 const SHOPITEMS_DATA = [
     { id: "1", name: "Brokoli", price: "2" },
     { id: "2", name: "Donut", price: "4" },
@@ -29,38 +27,52 @@ const SHOPITEMS_DATA = [
     { id: "24", name: "Bread", price: "2" },
 ];
 
+const PURCHASEDITEMS_DATA = [
+    { id: "1", name: "Brokoli", price: "2" },
+    { id: "2", name: "Donut", price: "4" },
+    { id: "3", name: "Biscuit", price: "1" },
+    { id: "4", name: "Watermelon", price: "5" },
+
+];
+
+
 export interface itemType {
     id: string,
     name: string,
     price: string
 }
 
+export interface purchaseType {
+    id: string,
+    name: string,
+    price: string
+    date: Date
+}
+
 export type dbStatusType = 'failed' | 'open' | 'pending'
 
+interface Props {
+    setDBStatus: React.Dispatch<React.SetStateAction<dbStatusType>>,
+}
 
-// indexedDB.deleteDatabase("appDatabase");
+indexedDB.deleteDatabase("appDatabase");
 
+const request = indexedDB.open("appDatabase", 3);
+let db: IDBDatabase;
 
-export function initDB(setStoreItems: React.Dispatch<React.SetStateAction<itemType[]>>, setCartItems: React.Dispatch<React.SetStateAction<itemType[]>>, setDBStatus: React.Dispatch<React.SetStateAction<dbStatusType>>) {
-    const request = indexedDB.open("appDatabase", 3);
-    let db: IDBDatabase;
+export function initDB({ setDBStatus }: Props) {
 
     request.onupgradeneeded = function (event: any) {
-
-        // if (db) {
-        //     deleteStore(db, "shopItemsStore");
-        // }
 
         db = request.result;
         const shopItemsStore = db.createObjectStore("shopItemsStore", { keyPath: "id" });
         const cartItemsStore = db.createObjectStore("cartItemsStore", { keyPath: "id" });
-
-        shopItemsStore.createIndex("idIndex", "id", { unique: true });
-        shopItemsStore.createIndex("nameIndex", "name", { unique: false });
+        const purchasedItemsStore = db.createObjectStore("purchasedItemsStore", { keyPath: "id" });
 
         let transaction = event.target.transaction;
         transaction.oncomplete = function () {
-            addData(db, SHOPITEMS_DATA);
+            addData(db, "shopItemsStore", SHOPITEMS_DATA);
+            addData(db, "purchasedItemsStore", PURCHASEDITEMS_DATA);
         }
 
     };
@@ -68,8 +80,9 @@ export function initDB(setStoreItems: React.Dispatch<React.SetStateAction<itemTy
     request.onsuccess = function () {
         db = request.result;
         console.log("successfully opened database")
-        getData(db, setStoreItems, "shopItemsStore");
-        getData(db, setCartItems, "cartItemsStore");
+        // getData(db, setStoreItems, "shopItemsStore");
+        // getData(db, setCartItems, "cartItemsStore");
+        // getData(db, setPurchasedItems, "purchasedItemsStore");
         setDBStatus('open');
     }
 
@@ -82,10 +95,9 @@ export function initDB(setStoreItems: React.Dispatch<React.SetStateAction<itemTy
 
 }
 
-
-export function addData(db: IDBDatabase, data: itemType[]): void {
-    let transaction = db.transaction("shopItemsStore", "readwrite");
-    let shopItemsStore = transaction.objectStore("shopItemsStore");
+export function addData(db: IDBDatabase, storeName: string, data: itemType[]): void {
+    let transaction = db.transaction(storeName, "readwrite");
+    let shopItemsStore = transaction.objectStore(storeName);
 
     data.forEach((item) => { shopItemsStore.add(item) })
 
@@ -108,7 +120,7 @@ export function addSingleItem(item: itemType, storeName: string, setCartItems: R
         let store = transaction.objectStore(storeName);
         const addRequest = store.add(item);
         addRequest.onsuccess = function () {
-            getData(db, setCartItems, "cartItemsStore");
+            // getData(db, setCartItems, "cartItemsStore");
             console.log(`Item id:${item.id} added!`)
         }
         addRequest.onerror = function (event: any) {
@@ -120,21 +132,35 @@ export function addSingleItem(item: itemType, storeName: string, setCartItems: R
     }
 }
 
-export function getData(db: IDBDatabase, setStoreItems: React.Dispatch<React.SetStateAction<itemType[]>>, storeName: string): void {
-    let transaction = db.transaction(storeName, 'readonly');
-    let objectStore = transaction.objectStore(storeName);
-    let req = objectStore.getAll();
-    let finalData: any = [];
+export function getData(storeName: string): Promise<itemType[]> {
+    return new Promise((resolve, reject) => {
+        const request = indexedDB.open('appDatabase', 3);
+        let data: itemType[];
 
-    req.onsuccess = function (event: any) {
-        let data = event.target.result;
-        console.log("data: " + JSON.stringify(data))
-        data ? setStoreItems(data) : console.log("data not found")
-    }
+        request.onsuccess = function (event: any) {
+            db = request.result;
+            let transaction = db.transaction(storeName, 'readonly');
+            let objectStore = transaction.objectStore(storeName);
+            let txRequest = objectStore.getAll();
 
-    req.onerror = function (event: any) {
-        console.log('error getting user data ' + event.target.errorCode);
-    }
+            txRequest.onsuccess = function () {
+                data = txRequest.result;
+                console.log("data: " + JSON.stringify(data))
+                resolve(data);
+
+            }
+
+            txRequest.onerror = function (error) {
+                reject(`Error to get store data: ${error}`)
+            }
+        }
+
+        request.onerror = function (event: any) {
+            reject(`Failed to get data`)
+        }
+
+    })
+
 }
 
 export function deleteStore(storeName: string): void {
@@ -171,7 +197,7 @@ export function clearStore(storeName: string, setCartItems: React.Dispatch<React
         const clearedObjectStore = transaction.objectStore(storeName);
         const clearRequest = clearedObjectStore.clear();
         clearRequest.onsuccess = function () {
-            getData(db, setCartItems, "cartItemsStore");
+            // getData(db, setCartItems, "cartItemsStore");
             console.log(`Cleared store: ${storeName}`);
         }
     }
