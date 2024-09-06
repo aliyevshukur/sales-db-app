@@ -1,0 +1,89 @@
+.reciept {
+display: flex;
+flex-direction: column;
+padding: 16px;
+align-items: center;
+box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+font-size: 14px;
+font-family: 'Fake Receipt', sans-serif;                                         
+color: rgb(60, 60, 60);
+min-width: 250px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.recieptInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.marketInfo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.marketInfoItem {
+display: flex;
+justify-content: space-between;
+}
+
+.dots {
+    border-style: dotted;
+    border-width: 2px 0px 2px 0px;
+    height: 4px;
+    width: 100%;
+    border-color: rgb(81, 81, 81);
+    margin: 15px 0px;
+}
+
+.recieptBody {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.recieptTitle {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0px 15px;
+    font-weight: 500;
+}
+
+.item {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0px 15px;
+}
+
+.name {
+    margin-right: auto;
+}
+
+.totalWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.smallDots {
+    border-style: dotted;
+    border-width: 2px 0px 0px 0px;
+    height: 4px;
+    width: 50%;
+    border-color: rgb(81, 81, 81);
+    margin: 15px 0px;
+}
+
+.bottomMessage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

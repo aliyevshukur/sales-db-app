@@ -302,6 +302,12 @@ export interface purchaseType {
     date: Date
 }
 
+export interface recieptType {
+    purchasedItems: itemType[],
+    date: Date,
+    totalPrice: string
+}
+
 export type dbStatusType = 'failed' | 'open' | 'pending'
 
 interface Props {
