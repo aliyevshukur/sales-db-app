@@ -10,7 +10,7 @@ interface Props {
 export default function ProductsWrapper({ products, onPurchase }: Props) {
     return (
         <div className='productsWrapper'>
-            {products.map((product) => <Product product={product} onPurchase={onPurchase} />)}
+            {products.map((product) => <Product key={product.id} product={product} onPurchase={onPurchase} />)}
         </div>
     )
 }

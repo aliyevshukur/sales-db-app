@@ -1,9 +1,15 @@
 .links{
+    display:inline-block;
     text-decoration: none;
     color: black;
     font-weight: bold;
+    transition: transform .3s ease;
+    will-change: transform;
+
 }
 
 .links:hover {
+    transform: translateY(-2px);
     color: rgb(86, 86, 86);
-}
+
+ }
