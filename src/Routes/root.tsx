@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { initDB, itemType, getData, dbStatusType, deleteStore, clearStore, addSingleItem, purchaseType } from '../db';
+import { initDB, itemType, getData, dbStatusType, deleteStore, clearCart, addSingleItem, purchaseType } from '../db';
 import { Outlet } from 'react-router-dom';
 
 import Home from './Home'

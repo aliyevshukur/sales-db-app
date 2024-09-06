@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Home.css';
 import Cart from '../Components/Cart/Cart';
-import { initDB, itemType, getData, dbStatusType, deleteStore, clearStore, addSingleItem, purchaseType } from '../db';
+import { initDB, itemType, getData, dbStatusType, deleteStore, clearCart, addSingleItem, purchaseType } from '../db';
 import Header from '../Components/Header/Header';
 import ProductsWrapper from '../Components/Products/ProductsWrapper';
 
@@ -15,24 +15,40 @@ function Home() {
     initDB({ setDBStatus });
 
     if (dbStatus === 'open') {
-      getData('shopItemsStore')
-        .then((data) => {
-          setStoreItems(data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });;
+      updateDB("shopItemsStore", setStoreItems);
     }
   }, []);
 
   function handleOnClear() {
     if (dbStatus === 'open') {
-      clearStore('cartItemsStore', setCartItems);
+      clearCart()
+        .then(() => {
+          setCartItems([]);
+        })
+        .catch(() => {
+          console.error("Failed to clear")
+        });
     }
   }
 
   function handleOnPurchase(product: itemType) {
-    addSingleItem(product, 'cartItemsStore', setCartItems);
+    addSingleItem(product, 'cartItemsStore')
+      .then(() => {
+        updateDB("cartItemsStore", setCartItems)
+      })
+      .catch((error) => {
+        console.error(error)
+      });
+  }
+
+  function updateDB(storeName: string, setState: React.Dispatch<React.SetStateAction<itemType[]>>) {
+    getData(storeName)
+      .then((data) => {
+        setState(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   return (

@@ -10,8 +10,8 @@ export default function CartItem({ name, price }: Props) {
 
     return (
         <div className='cartItem'>
-            <div>{name}</div>
-            <div>{price}$</div>
+            <div className='name'>{name}</div>
+            <div className='price'>{price}</div>
         </div>
     )
 }

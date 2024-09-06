@@ -15,7 +15,7 @@ export default function Cart({ cartItems, onClear }: Props) {
         let totalPrice = 0;
 
         cartItems.forEach((product) => {
-            totalPrice = +totalPrice + +product.price;
+            totalPrice = totalPrice + +parseFloat(product.price.slice(1)).toFixed(1);
         })
         return totalPrice
 

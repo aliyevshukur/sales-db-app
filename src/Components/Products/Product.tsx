@@ -16,11 +16,11 @@ export default function Prodcut({ product, onPurchase }: Props) {
     }
     return (
         <div className='product'>
-            <div className='productTitle'>
-                <div className='productName'>{product.name}</div>
+            <div className='productName'>{product.name}</div>
+            <div className='productBottom'>
                 <div className='productPrice'>{product.price}$</div>
+                <Button title={"purchase"} onClick={handleOnPurchase} />
             </div>
-            <Button title={"purchase"} onClick={handleOnPurchase} />
         </div>
     )
 }
