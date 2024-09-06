@@ -1,7 +1,15 @@
 .recieptPage {
     display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 30px;
+}
+
+.reciepts {
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items:baseline;
     gap: 30px;
     padding: 30px;
 }

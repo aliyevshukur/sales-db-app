@@ -9,9 +9,11 @@ import { Link } from 'react-router-dom';
 export default function Header() {
     return (
         <div className='header'>
+
             <IconContext.Provider value={{ size: '50px', color: 'black' }} >
-                <Link to="/">
+                <Link to="/" className='logo'>
                     <CiShop />
+                    <div>SUPERMARKET</div>
                 </Link>
             </IconContext.Provider>
             <Navigation />

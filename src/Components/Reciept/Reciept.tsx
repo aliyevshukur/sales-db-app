@@ -19,7 +19,8 @@ export default function Reciept({ reciept }: Props) {
             <div className='dots'></div>
             <div className='marketInfo'>
                 <div className='marketInfoItem'><div>Cashier</div><div>#3</div></div>
-                <div className='marketInfoItem'><div>Manager</div><div>Eric Steer</div> </div>
+                <div className='marketInfoItem'><div>Manager</div><div>Eric Steer</div></div>
+                <div className='marketInfoItem'><div>Date</div><div>{reciept.date.toDateString()}</div></div>
             </div>
             <div className='dots'></div>
             <div className='recieptBody'>
@@ -39,10 +40,10 @@ export default function Reciept({ reciept }: Props) {
             <div className='dots'></div>
             <div className="totalWrapper">
                 <div>Sub Total</div>
-                <div>{reciept.totalPrice}</div>
+                <div>${reciept.totalPrice}</div>
             </div>
             <div className='smallDots'></div>
-            <div className='barcode'></div>
+            <div className='barcode'>BARCODE</div>
             <div className="bottomMessage">
                 <div className="thankYou">THANK YOU!</div>
                 <div className="seeYou">Glad to see you again!</div>

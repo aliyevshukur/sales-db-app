@@ -4,10 +4,11 @@ flex-direction: column;
 padding: 16px;
 align-items: center;
 box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-font-size: 14px;
-font-family: 'Fake Receipt', sans-serif;                                         
+font-size: 12px;
+font-family: 'Fake Receipt', sans-serif;
 color: rgb(60, 60, 60);
 min-width: 250px;
+/* min-height: 500px; */
 }
 
 .title {
@@ -45,6 +46,7 @@ justify-content: space-between;
     display: flex;
     flex-direction: column;
     width: 100%;
+    font-size: 10px;
 }
 
 .recieptTitle {
@@ -62,6 +64,10 @@ justify-content: space-between;
 
 .name {
     margin-right: auto;
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .totalWrapper {
@@ -86,4 +92,9 @@ justify-content: space-between;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.barcode {
+    font-family: 'Libre Barcode 39';
+    font-size: 40px;
 }

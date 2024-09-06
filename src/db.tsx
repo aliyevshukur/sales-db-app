@@ -305,7 +305,7 @@ export interface purchaseType {
 export interface recieptType {
     purchasedItems: itemType[],
     date: Date,
-    totalPrice: string
+    totalPrice: number
 }
 
 export type dbStatusType = 'failed' | 'open' | 'pending'
@@ -314,7 +314,7 @@ interface Props {
     setDBStatus: React.Dispatch<React.SetStateAction<dbStatusType>>,
 }
 
-indexedDB.deleteDatabase("appDatabase");
+// indexedDB.deleteDatabase("appDatabase");
 
 const request = indexedDB.open("appDatabase", version);
 let db: IDBDatabase;
@@ -322,11 +322,11 @@ let db: IDBDatabase;
 export function initDB({ setDBStatus }: Props) {
 
     request.onupgradeneeded = function (event: any) {
-
         db = request.result;
         const shopItemsStore = db.createObjectStore("shopItemsStore", { keyPath: "id" });
         const cartItemsStore = db.createObjectStore("cartItemsStore", { keyPath: "id" });
         const purchasedItemsStore = db.createObjectStore("purchasedItemsStore", { keyPath: "id" });
+        const recieptsStore = db.createObjectStore("recieptsStore", { autoIncrement: true });
 
         let transaction = event.target.transaction;
         transaction.oncomplete = function () {
@@ -339,9 +339,6 @@ export function initDB({ setDBStatus }: Props) {
     request.onsuccess = function () {
         db = request.result;
         console.log("successfully opened database")
-        // getData(db, setStoreItems, "shopItemsStore");
-        // getData(db, setCartItems, "cartItemsStore");
-        // getData(db, setPurchasedItems, "purchasedItemsStore");
         setDBStatus('open');
     }
 
@@ -366,7 +363,7 @@ export function addData(db: IDBDatabase, storeName: string, data: itemType[]): v
     }
 }
 
-export function addSingleItem(item: itemType, storeName: string,): Promise<void> {
+export function addSingleItem(item: itemType | recieptType, storeName: string,): Promise<void> {
     return new Promise((resolve, reject) => {
         const request = indexedDB.open("appDatabase", version);
         let db: IDBDatabase;
@@ -377,7 +374,7 @@ export function addSingleItem(item: itemType, storeName: string,): Promise<void>
             let objectStore = transaction.objectStore(storeName);
             const txRequest = objectStore.add(item);
             txRequest.onsuccess = function () {
-                console.log(`Item id:${item.id} added!`)
+                console.log(`Item id:${item} added!`)
                 resolve()
             }
             txRequest.onerror = function (error) {
@@ -387,13 +384,13 @@ export function addSingleItem(item: itemType, storeName: string,): Promise<void>
         }
 
         request.onerror = function () {
-            console.log(`Failed to add item id:${item.id}`);
+            console.log(`Failed to add item id:${item}`);
         }
     })
 
 }
 
-export function getData(storeName: string): Promise<itemType[]> {
+export function getData(storeName: string): Promise<any> {
     return new Promise((resolve, reject) => {
         const request = indexedDB.open('appDatabase', version);
         let data: itemType[];
@@ -444,22 +441,22 @@ export function deleteStore(storeName: string): void {
     }
 }
 
-export function clearCart(): Promise<void> {
+export function clearStore(storeName: string): Promise<void> {
     return new Promise((resolve, reject) => {
         const request = indexedDB.open("appDatabase", version);
         let db: IDBDatabase;
 
         request.onsuccess = function () {
             db = request.result;
-            let transaction = db.transaction("cartItemsStore", "readwrite");
-            const objectStore = transaction.objectStore("cartItemsStore");
+            let transaction = db.transaction(storeName, "readwrite");
+            const objectStore = transaction.objectStore(storeName);
             const txRequest = objectStore.clear();
             txRequest.onsuccess = function () {
-                console.log(`Cleared store: "cartItemsStore"`);
+                console.log(`Cleared store: ${storeName}`);
                 resolve();
             }
             txRequest.onerror = function () {
-                reject("Failed to clear store: cartItemsStore")
+                reject(`Failed to clear store: ${storeName}`)
             }
         }
 

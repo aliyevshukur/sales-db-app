@@ -3,23 +3,18 @@ import CartItem from './CartItem'
 import Button from '../Button/Button';
 import './Cart.css';
 import { itemType } from '../../db';
+import bigDecimal from 'js-big-decimal';
 
 interface Props {
     cartItems: itemType[];
     onClear: () => void
+    onCheckout: () => void
+    totalPrice: number
 };
 
-export default function Cart({ cartItems, onClear }: Props) {
+export default function Cart({ cartItems, onClear, onCheckout, totalPrice }: Props) {
 
-    function calculateTotalPrice() {
-        let totalPrice = 0;
 
-        cartItems.forEach((product) => {
-            totalPrice = totalPrice + +parseFloat(product.price.slice(1)).toFixed(1);
-        })
-        return totalPrice
-
-    }
 
     return (
         <div className='cart'>
@@ -27,10 +22,10 @@ export default function Cart({ cartItems, onClear }: Props) {
             <div className='cartItemWrapper'>
                 {cartItems.map((item) => <CartItem name={item.name} price={item.price} />)}
             </div>
-            <div className='totalPrice'>Total price: {calculateTotalPrice()}$</div>
+            <div className='totalPrice'>Total price: {totalPrice}$</div>
             <div className='buttonWrapper'>
                 <Button title={"Clear"} onClick={onClear} />
-                <Button title={"Checkout"} className='checkoutButton' />
+                <Button title={"Checkout"} onClick={onCheckout} className='checkoutButton' />
             </div>
         </div>
     )
