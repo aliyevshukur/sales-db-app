@@ -19,7 +19,7 @@ function Home() {
     if (dbStatus === 'open') {
       updateDB("shopItemsStore", setStoreItems);
     }
-  }, [dbStatus, storeItems]);
+  }, [dbStatus]);
 
   useEffect(() => {
     calculateTotalPrice();
