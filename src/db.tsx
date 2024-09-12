@@ -324,17 +324,16 @@ export function addSingleItem(item: itemType | recieptType, storeName: string,):
             let objectStore = transaction.objectStore(storeName);
             const txRequest = objectStore.add(item);
             txRequest.onsuccess = function () {
-                console.log(`Item id:${item} added!`)
+                console.log(`Item added!`)
                 resolve()
             }
             txRequest.onerror = function (error) {
-                // console.log(`error adding item: ${txRequest.error}`);
                 reject(`Error to get store data: ${txRequest.error}`)
             }
         }
 
         request.onerror = function () {
-            console.log(`Failed to add item id:${item}`);
+            console.log(`Failed to add item}`);
         }
     })
 
