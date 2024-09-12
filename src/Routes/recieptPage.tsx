@@ -27,18 +27,21 @@ export default function RecieptPage() {
         getData('recieptsStore')
             .then((data) => {
                 setReciepts(data)
-                console.log(`Reciept data: ${data}`)
             })
             .catch((error) => {
                 console.error("Error getting reciept data: " + error)
             })
     }
 
+    if (reciepts.length === 0) {
+        return <div className='recieptPage'>No reciepts yet</div>
+    }
+
     return (
         <div className='recieptPage'>
             <Button title='clear all' onClick={handleOnClick} />
             <div className='reciepts'>
-                {reciepts.map((item) => <Reciept reciept={item} />)}
+                {reciepts.map((item, index) => <Reciept key={index} reciept={item} />)}
             </div>
         </div>
     )

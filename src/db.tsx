@@ -253,41 +253,7 @@ const SHOPITEMS_DATA = [
     }
 ];
 
-const PURCHASEDITEMS_DATA = [
-    {
-        id: 5,
-        name: "Bread - Rolls, Rye",
-        price: "$5.25"
-    },
-    {
-        id: 6,
-        name: "Kirsch - Schloss",
-        price: "$2.69"
-    },
-    {
-        id: 7,
-        name: "Wine - White, Pelee Island",
-        price: "$2.10"
-    },
-    {
-        id: 8,
-        name: "Trout - Rainbow, Frozen",
-        price: "$8.73"
-    },
-    {
-        id: 9,
-        name: "Appetizer - Escargot Puff",
-        price: "$3.32"
-    },
-    {
-        id: 10,
-        name: "Wine - Guy Sage Touraine",
-        price: "$7.24"
-    },
-
-];
-
-const version = 3;
+const version = 1;
 
 export interface itemType {
     id: number,
@@ -310,57 +276,41 @@ export interface recieptType {
 
 export type dbStatusType = 'failed' | 'open' | 'pending'
 
-interface Props {
-    setDBStatus: React.Dispatch<React.SetStateAction<dbStatusType>>,
-}
 
-// indexedDB.deleteDatabase("appDatabase");
+export function initDB(): Promise<string> {
+    return new Promise((resolve, reject) => {
+        const request = indexedDB.open("appDatabase", version);
+        let db: IDBDatabase;
 
-const request = indexedDB.open("appDatabase", version);
-let db: IDBDatabase;
+        request.onupgradeneeded = function (event: any) {
+            db = request.result;
+            const shopItemsStore = db.createObjectStore("shopItemsStore", { keyPath: "id" });
+            const cartItemsStore = db.createObjectStore("cartItemsStore", { keyPath: "id" });
+            const recieptsStore = db.createObjectStore("recieptsStore", { autoIncrement: true });
+        };
 
-export function initDB({ setDBStatus }: Props) {
+        request.onsuccess = function () {
+            db = request.result;
+            const transaction = db.transaction("shopItemsStore", "readwrite")
+            let shopItemsStore = transaction.objectStore("shopItemsStore");
 
-    request.onupgradeneeded = function (event: any) {
-        db = request.result;
-        const shopItemsStore = db.createObjectStore("shopItemsStore", { keyPath: "id" });
-        const cartItemsStore = db.createObjectStore("cartItemsStore", { keyPath: "id" });
-        const purchasedItemsStore = db.createObjectStore("purchasedItemsStore", { keyPath: "id" });
-        const recieptsStore = db.createObjectStore("recieptsStore", { autoIncrement: true });
-
-        let transaction = event.target.transaction;
-        transaction.oncomplete = function () {
-            addData(db, "shopItemsStore", SHOPITEMS_DATA);
-            addData(db, "purchasedItemsStore", PURCHASEDITEMS_DATA);
+            SHOPITEMS_DATA.forEach((item) => {
+                shopItemsStore.add(item)
+            })
+            console.log("successfully opened database");
+            resolve('open');
         }
 
-    };
-
-    request.onsuccess = function () {
-        db = request.result;
-        console.log("successfully opened database")
-        setDBStatus('open');
-    }
-
-    request.onerror = function () {
-        let error = request.error;
-        console.log("An error occurred with IndexedDB: " + JSON.stringify(error?.message));
-        setDBStatus('failed');
-    };
-
-
+        request.onerror = function () {
+            let error = request.error;
+            console.log("An error occurred with IndexedDB: " + JSON.stringify(error?.message));
+            resolve('failed');
+        };
+    });
 }
-
 export function addData(db: IDBDatabase, storeName: string, data: itemType[]): void {
-    let transaction = db.transaction(storeName, "readwrite");
-    let shopItemsStore = transaction.objectStore(storeName);
-
+    let shopItemsStore = db.transaction(storeName, "readwrite").objectStore(storeName);
     data.forEach((item) => { shopItemsStore.add(item) })
-
-    transaction.oncomplete = function () { console.log('Data added!') }
-    transaction.onerror = function (event: any) {
-        console.log(`error adding data: ${event}`);
-    }
 }
 
 export function addSingleItem(item: itemType | recieptType, storeName: string,): Promise<void> {
@@ -393,6 +343,7 @@ export function addSingleItem(item: itemType | recieptType, storeName: string,):
 export function getData(storeName: string): Promise<any> {
     return new Promise((resolve, reject) => {
         const request = indexedDB.open('appDatabase', version);
+        let db: IDBDatabase;
         let data: itemType[];
 
         request.onsuccess = function (event: any) {

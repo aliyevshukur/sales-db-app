@@ -1,30 +1,15 @@
-.App {
+.home {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #dddddd;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: rgb(0, 0, 0);
 }
 
 .body {
   display: flex;
-  width: 90%;
+  width: 100%;
+}
+
+@media only screen and (max-width:700px) {
+  .body {
+    flex-direction: column;
+    align-items: center;
+  }
 }

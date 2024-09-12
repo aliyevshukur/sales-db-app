@@ -5,11 +5,19 @@
     font-weight: bold;
     transition: transform .3s ease;
     will-change: transform;
+    font-size: 16px;
+
 
 }
 
 .links:hover {
     transform: translateY(-2px);
     color: rgb(86, 86, 86);
-
  }
+
+ @media only screen and (max-width:700px) {
+    .links {
+        font-size: 3vw;
+
+    }
+  }

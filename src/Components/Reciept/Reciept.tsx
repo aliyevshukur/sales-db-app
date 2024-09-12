@@ -30,7 +30,7 @@ export default function Reciept({ reciept }: Props) {
                     <div className='price'>Price</div>
                 </div>
                 {reciept.purchasedItems.map((item: itemType) => (
-                    <div className='item'>
+                    <div className='item' key={item.id}>
                         <div className='name'>{item.name}</div>
                         <div className='qty'>1</div>
                         <div className='price'>{item.price}</div>

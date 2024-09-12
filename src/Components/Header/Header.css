@@ -5,17 +5,25 @@
   padding: 20px 100px;
   border-radius: 0px 0px 20px 20px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  font-size: 16px;
+
 }
 
 .logo {
   display:flex;
   align-items: center;
   font-weight: bold;
-  font-size: 20px;
   text-decoration: none;
   color: rgb(36, 36, 36);
 }
 
 .logo:hover{
   color: rgb(86, 86, 86);
+}
+
+@media only screen and (max-width:700px) {
+  .header {
+    padding: 5px;
+    font-size: 3vw;
+  }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Root from './Routes/Root';
+import App from './Routes/App';
 import reportWebVitals from './reportWebVitals';
 import {
   createBrowserRouter,
@@ -14,7 +14,7 @@ import Home from './Routes/Home';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: <App />,
     errorElement: <ErrorPage />,
     children: [
       {

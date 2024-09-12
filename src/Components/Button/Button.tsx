@@ -5,10 +5,22 @@ interface Props {
     title: string
     className?: string
     onClick?: () => void
+    type?: {}
 }
 
-export default function Button({ title, className, onClick }: Props) {
+export default function Button({ title, className, onClick, type }: Props) {
+    let style = {};
+
+    switch (type) {
+        case "sucess":
+            style = { backgroundColor: "green" }
+            break;
+        case "fail":
+            style = { backgroundColor: "red" }
+            break;
+    }
+
     return (
-        <div className={`button ${className}`} onClick={onClick}>{title}</div>
+        <div style={style} className={`button ${className}`} onClick={onClick}>{title}</div>
     )
 }

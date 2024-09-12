@@ -8,8 +8,9 @@
   padding:8px;
   font-size: 14px;
   border-radius: 6px;
-  transition: box-shadow 0.15s ease,transform 0.15s ease;  
+  transition: box-shadow 0.15s ease,transform 0.15s ease;
   text-transform: uppercase;
+  z-index: 0;
 }
 
 .button:hover {

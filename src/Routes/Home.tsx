@@ -1,38 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './Home.css';
 import Cart from '../Components/Cart/Cart';
-import { initDB, itemType, getData, dbStatusType, deleteStore, clearStore, addSingleItem, purchaseType, recieptType } from '../db';
+import { itemType, getData, clearStore, addSingleItem } from '../db';
 import bigDecimal from 'js-big-decimal';
 import ProductsWrapper from '../Components/Products/ProductsWrapper';
+import { CartContext, DBStatusContext } from './App';
+import 'animate.css/animate.min.css';
 
 
 function Home() {
-  const [cartItems, setCartItems] = useState<Array<itemType>>([]);
+  const [cartItems, setCartItems] = useContext(CartContext);
+  const [dbStatus] = useContext(DBStatusContext);
   const [storeItems, setStoreItems] = useState<Array<itemType>>([]);
-  const [dbStatus, setDBStatus] = useState<dbStatusType>('open');
-  const [reciepts, setReciepts] = useState<Array<recieptType>>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
 
   useEffect(() => {
-    initDB({ setDBStatus });
-
+    console.log(`Store items ${storeItems}`)
     if (dbStatus === 'open') {
       updateDB("shopItemsStore", setStoreItems);
     }
+  }, [dbStatus, storeItems]);
 
+  useEffect(() => {
     calculateTotalPrice();
   }, [cartItems]);
 
   function handleOnClear() {
-    if (dbStatus === 'open') {
-      clearStore('cartItemsStore')
-        .then(() => {
-          setCartItems([]);
-        })
-        .catch(() => {
-          console.error("Failed to clear")
-        });
-    }
+    clearStore('cartItemsStore')
+      .then(() => {
+        setCartItems([]);
+      })
+      .catch(() => {
+        console.error("Failed to clear")
+      });
   }
 
   function handleOnPurchase(product: itemType) {
@@ -46,20 +46,22 @@ function Home() {
   }
 
   function checkoutItems() {
-    const date = Date.now()
-    const reciept = {
-      purchasedItems: cartItems,
-      date: new Date(date),
-      totalPrice: totalPrice,
+    if (cartItems.length !== 0) {
+      const date = Date.now()
+      const reciept = {
+        purchasedItems: cartItems,
+        date: new Date(date),
+        totalPrice: totalPrice,
+      }
+      addSingleItem(reciept, 'recieptsStore')
+      clearStore('cartItemsStore')
+        .then(() => {
+          setCartItems([]);
+        })
+        .catch(() => {
+          console.error("Failed to clear")
+        });
     }
-    addSingleItem(reciept, 'recieptsStore')
-    clearStore('cartItemsStore')
-      .then(() => {
-        setCartItems([]);
-      })
-      .catch(() => {
-        console.error("Failed to clear")
-      });
   }
 
   function updateDB(storeName: string, setState: React.Dispatch<React.SetStateAction<itemType[]>>) {
@@ -74,7 +76,7 @@ function Home() {
 
   function calculateTotalPrice() {
     let totalPrice = "0";
-    cartItems.forEach((product) => {
+    cartItems.forEach((product: itemType) => {
       const productPrice = product.price.slice(1);
       totalPrice = bigDecimal.add(totalPrice, productPrice);
     })
@@ -82,11 +84,13 @@ function Home() {
   }
 
   return (
-    <div className="App">
-      <div className='body'>
-        <Cart cartItems={cartItems} onClear={handleOnClear} onCheckout={checkoutItems} totalPrice={totalPrice} />
-        <ProductsWrapper products={storeItems} onPurchase={handleOnPurchase} />
-      </div>
+    <div className="home">
+      {dbStatus === "pending" ?
+        <div>Loading...</div>
+        : <div className='body'>
+          <Cart cartItems={cartItems} onClear={handleOnClear} onCheckout={checkoutItems} totalPrice={totalPrice} />
+          <ProductsWrapper products={storeItems} onPurchase={handleOnPurchase} />
+        </div>}
     </div>
   );
 }

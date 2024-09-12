@@ -3,7 +3,6 @@ import CartItem from './CartItem'
 import Button from '../Button/Button';
 import './Cart.css';
 import { itemType } from '../../db';
-import bigDecimal from 'js-big-decimal';
 
 interface Props {
     cartItems: itemType[];
