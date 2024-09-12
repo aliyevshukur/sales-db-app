@@ -1,5 +1,3 @@
-import React from 'react'
-
 const SHOPITEMS_DATA = [
     {
         id: 1,
@@ -287,6 +285,10 @@ export function initDB(): Promise<string> {
             const shopItemsStore = db.createObjectStore("shopItemsStore", { keyPath: "id" });
             const cartItemsStore = db.createObjectStore("cartItemsStore", { keyPath: "id" });
             const recieptsStore = db.createObjectStore("recieptsStore", { autoIncrement: true });
+
+            shopItemsStore.createIndex('id', 'id', { unique: false });
+            cartItemsStore.createIndex('id', 'id', { unique: false });
+            recieptsStore.createIndex('id', 'id', { unique: false });
         };
 
         request.onsuccess = function () {

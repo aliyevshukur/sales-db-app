@@ -15,13 +15,21 @@ function Home() {
   const [totalPrice, setTotalPrice] = useState<number>(0);
 
   useEffect(() => {
-    console.log(`Store items ${storeItems}`)
     if (dbStatus === 'open') {
       updateDB("shopItemsStore", setStoreItems);
     }
   }, [dbStatus]);
 
   useEffect(() => {
+    function calculateTotalPrice() {
+      let totalPrice = "0";
+      cartItems.forEach((product: itemType) => {
+        const productPrice = product.price.slice(1);
+        totalPrice = bigDecimal.add(totalPrice, productPrice);
+      })
+      setTotalPrice(+totalPrice)
+    }
+
     calculateTotalPrice();
   }, [cartItems]);
 
@@ -72,15 +80,6 @@ function Home() {
       .catch((error) => {
         console.error(error);
       });
-  }
-
-  function calculateTotalPrice() {
-    let totalPrice = "0";
-    cartItems.forEach((product: itemType) => {
-      const productPrice = product.price.slice(1);
-      totalPrice = bigDecimal.add(totalPrice, productPrice);
-    })
-    setTotalPrice(+totalPrice)
   }
 
   return (
