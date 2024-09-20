@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
-import './Home.css';
+import './Home.scss';
 import Cart from '../Components/Cart/Cart';
 import { itemType, getData, clearStore, addSingleItem } from '../db';
 import bigDecimal from 'js-big-decimal';
-import ProductsWrapper from '../Components/Products/ProductsWrapper';
 import { CartContext, DBStatusContext } from './App';
 import 'animate.css/animate.min.css';
+import ShopButton from '../Components/ShopButton/ShopButton';
 
 
 function Home() {
@@ -82,14 +82,31 @@ function Home() {
       });
   }
 
+  if (dbStatus === "pending") {
+    return <div>Loading...</div>
+  }
+
   return (
-    <div className="home">
-      {dbStatus === "pending" ?
-        <div>Loading...</div>
-        : <div className='body'>
-          <Cart cartItems={cartItems} onClear={handleOnClear} onCheckout={checkoutItems} totalPrice={totalPrice} />
-          <ProductsWrapper products={storeItems} onPurchase={handleOnPurchase} />
-        </div>}
+    <div className="home-wrapper">
+
+      <div className="home-wrapper-background">
+        <div className="home-wrapper-background-square" />
+        <div className="home-wrapper-background-round-overlay" />
+      </div>
+
+      <div className='home'>
+        <div className="home-hero">
+          <div className="home-hero-text">
+            <div className="home-hero-text-upper-subtitle">Unleash the Sound. Elevate Your Experience.</div>
+            <div className="home-hero-text-title">SPEAKERS</div>
+            <div className="home-hero-text-subtitle">Discover premium speakers that bring your music to life.</div>
+            <ShopButton />
+          </div>
+          <img src="./home-hero.png" alt="" className="home-hero-image" />
+        </div>
+        {/* <Cart cartItems={cartItems} onClear={handleOnClear} onCheckout={checkoutItems} totalPrice={totalPrice} /> */}
+        {/* <ProductsWrapper products={storeItems} onPurchase={handleOnPurchase} /> */}
+      </div>
     </div>
   );
 }

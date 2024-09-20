@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import "./App.css"
+import "./App.scss"
 import { Outlet } from 'react-router-dom';
 import Header from '../Components/Header/Header';
 import { itemType, initDB } from '../db';
@@ -21,12 +21,13 @@ export default function App() {
 
     }, []);
 
-    return (
+    return (<div className='app'>
         <CartContext.Provider value={[cartItems, setCartItems]}>
             <DBStatusContext.Provider value={[dbStatus, setDBStatus]}>
                 <Header />
                 <Outlet />
             </DBStatusContext.Provider>
         </CartContext.Provider>
+    </div>
     )
 }

@@ -1,0 +1,8 @@
+$primary: #f1f1f1;
+$secondary: #922220;
+$title-color: #4f4f4f;
+$error-color: #eb5757;
+
+@mixin colorPrimary {
+  color: $primary;
+}

@@ -355,7 +355,6 @@ export function getData(storeName: string): Promise<any> {
 
             txRequest.onsuccess = function () {
                 data = txRequest.result;
-                console.log("data: " + JSON.stringify(data))
                 resolve(data);
 
             }
