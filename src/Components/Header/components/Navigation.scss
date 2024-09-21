@@ -1,3 +1,5 @@
+@import "../../../_theme.scss";
+
 .nav {
     list-style-type: none;
     margin: 0;
@@ -6,6 +8,7 @@
     align-items: center;
 
     &-item {
+
         &-link {
             display: inline-block;
             text-decoration: none;
@@ -16,6 +19,16 @@
             &:hover {
                 color: rgb(86, 86, 86);
             }
+        }
+
+        &-active {
+            position: absolute;
+            top: 0;
+            width: 55px;
+            height: 8px;
+            border-bottom-left-radius: 13px;
+            border-bottom-right-radius: 13px;
+            background-color: $secondary;
         }
     }
 

@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './Home.scss';
-import Cart from '../Components/Cart/Cart';
-import { itemType, getData, clearStore, addSingleItem } from '../db';
+import Cart from '../../Components/Cart/Cart';
+import ProdcutList from '../../Components/Products/ProductList';
+import { itemType, getData, clearStore, addSingleItem } from '../../db';
 import bigDecimal from 'js-big-decimal';
-import { CartContext, DBStatusContext } from './App';
+import { CartContext, DBStatusContext } from '../App';
 import 'animate.css/animate.min.css';
-import ShopButton from '../Components/ShopButton/ShopButton';
+import ShopButton from '../../Components/ShopButton/ShopButton';
 
 
 function Home() {
@@ -104,8 +105,9 @@ function Home() {
           </div>
           <img src="./home-hero.png" alt="" className="home-hero-image" />
         </div>
+
         {/* <Cart cartItems={cartItems} onClear={handleOnClear} onCheckout={checkoutItems} totalPrice={totalPrice} /> */}
-        {/* <ProductsWrapper products={storeItems} onPurchase={handleOnPurchase} /> */}
+        <ProdcutList products={storeItems} onPurchase={handleOnPurchase} />
       </div>
     </div>
   );

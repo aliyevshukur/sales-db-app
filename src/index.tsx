@@ -7,9 +7,10 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import ErrorPage from './Routes/ErrorPage';
-import RecieptPage from './Routes/RecieptPage';
-import Home from './Routes/Home';
+import ErrorPage from './Routes/ErrorPage/ErrorPage';
+import RecieptPage from './Routes/RecieptPage/RecieptPage';
+import Home from './Routes/Home/Home';
+import About from './Routes/About/About';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/reciepts",
         element: <RecieptPage />
+      },
+      {
+        path: "/about",
+        element: <About />
       }
     ]
   },

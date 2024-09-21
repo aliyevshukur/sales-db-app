@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
-import "./App.scss"
+import "./App.scss";
+import '../_reset.scss';
 import { Outlet } from 'react-router-dom';
 import Header from '../Components/Header/Header';
 import { itemType, initDB } from '../db';

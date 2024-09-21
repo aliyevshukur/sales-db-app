@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import Reciept from '../Components/Reciept/Reciept'
-import { recieptType, getData, clearStore } from '../db'
+import Reciept from '../../Components/Reciept/Reciept'
+import { recieptType, getData, clearStore } from '../../db'
 import "./RecieptPage.css"
-import Button from '../Components/Button/Button';
+import Button from '../../Components/Button/Button';
 
 
 export default function RecieptPage() {
