@@ -1,16 +1,19 @@
 import React from 'react'
-import SiteLogo from '../../../Images/site-logo.png';
-import "./AboutItem.scss"
+import "./AboutItem.scss";
 
 
 interface Props {
     title: string,
     desc: string,
+    image: string,
+    imagePosition?: "left" | "right",
 }
-export default function AboutItem({ title, desc }: Props) {
+export default function AboutItem({ title, desc, image, imagePosition = "left" }: Props) {
+
+
     return (
         <div className="about-section-2-item">
-            <img src={SiteLogo} alt="" className='about-section-2-item-image' />
+            {imagePosition === "left" && <img src={image} alt="" className='about-section-2-item-image' />}
 
             <div className="about-section-2-item-text">
                 <div className="about-section-2-item-text-title">{title}</div>
@@ -18,6 +21,9 @@ export default function AboutItem({ title, desc }: Props) {
                     {desc}
                 </p>
             </div>
+
+            {imagePosition === "right" && <img src={image} alt="" className='about-section-2-item-image' />}
+
         </div >
     )
 }

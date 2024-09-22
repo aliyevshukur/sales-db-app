@@ -4,6 +4,7 @@ import '../_reset.scss';
 import { Outlet } from 'react-router-dom';
 import Header from '../Components/Header/Header';
 import { itemType, initDB } from '../db';
+import Footer from '../Components/Footer/Footer';
 
 export const CartContext = createContext<any>([]);
 export const DBStatusContext = createContext<any>('pending');
@@ -27,6 +28,7 @@ export default function App() {
             <DBStatusContext.Provider value={[dbStatus, setDBStatus]}>
                 <Header />
                 <Outlet />
+                <Footer />
             </DBStatusContext.Provider>
         </CartContext.Provider>
     </div>

@@ -8,15 +8,21 @@ import AboutItem from './Components/AboutItem';
 
 export default function About() {
 
-    const aboutItemData = {
-        title: "About Us",
-        desc: "At Planet Resonance, we are passionate about sound. Founded by a team of audio enthusiasts and technology innovators, we specialize in delivering cutting-edge speaker systems that transform your listening experience. Our mission is to bridge the gap between exceptional sound quality and sleek design, ensuring that every note is heard in its purest form."
-    }
+    const aboutItemsData = [
+        {
+            title: "About Us",
+            desc: "At Planet Resonance, we are passionate about sound. Founded by a team of audio enthusiasts and technology innovators, we specialize in delivering cutting-edge speaker systems that transform your listening experience. Our mission is to bridge the gap between exceptional sound quality and sleek design, ensuring that every note is heard in its purest form."
+        },
+        {
+            title: "Our Team",
+            desc: "Our commitment to sustainability means that we prioritize eco-friendly practices in our manufacturing process, ensuring that our impact on the planet is as minimal as possible. Join us on our mission to elevate sound and embrace the future of audio technology. Discover the difference with Planet Resonance—where every note matters."
+        }
+    ]
 
     return (
         <div className='about'>
-            <img src={AboutDecor1} alt="about" className="about-decor-1" />
-            <img src={AboutDecor2} alt="about" className="about-decor-2" />
+            {/* <img src={AboutDecor1} alt="about" className="about-decor-1" />
+            <img src={AboutDecor2} alt="about" className="about-decor-2" /> */}
 
             <div className="about-section-1" >
                 <div className="about-section-1-text">
@@ -28,12 +34,18 @@ export default function About() {
                         <div className="about-section-1-text-desc-bold">audio like never before</div>
                     </p>
                 </div>
+                <Wave width={"100%"} height={"100%"} />
             </div>
             <div className="about-section-2">
-                <Wave width={"100%"} height={"100%"} />
+                {aboutItemsData.map((aboutItemData, key) => {
 
-                <AboutItem title={aboutItemData.title} desc={aboutItemData.desc} />
-
+                    return <AboutItem key={aboutItemData.title}
+                        title={aboutItemData.title}
+                        desc={aboutItemData.desc}
+                        image={SiteLogo}
+                        imagePosition={key % 2 === 0 ? "left" : "right"}
+                    />
+                })}
             </div>
         </div>
     )
