@@ -1,7 +1,8 @@
 import React from 'react'
-import './Product.css'
+import './Product.scss'
 import { itemType } from '../../db'
-import Button from '../Button/Button'
+import Button from '../Button/Button';
+import HeroImage from '../../Images/home-hero.png';
 
 interface Props {
     product: itemType
@@ -16,11 +17,12 @@ export default function Prodcut({ product, onPurchase }: Props) {
     }
     return (
         <div className='product'>
-            <div className='productName'>{product.name}</div>
-            <div className='productBottom'>
-                <div className='productPrice'>{product.price}$</div>
-                <Button title={"purchase"} onClick={handleOnPurchase} />
-            </div>
+            <div className="product-darken" />
+            <div className='product-name'>{product.name}</div>
+            <img src={HeroImage} alt="" className="product-image" />
+
+            <div className='product-price'>{product.price}$</div>
+            <Button title={"buy"} onClick={handleOnPurchase} className={"product-button"} />
         </div>
     )
 }

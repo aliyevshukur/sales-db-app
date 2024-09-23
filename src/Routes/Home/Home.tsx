@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './Home.scss';
 import Cart from '../../Components/Cart/Cart';
-import ProdcutList from '../../Components/Products/ProductList';
+import ProductsCarousel from '../../Components/Products/ProductsCarousel';
 import { itemType, getData, clearStore, addSingleItem } from '../../db';
 import bigDecimal from 'js-big-decimal';
 import { CartContext, DBStatusContext } from '../App';
@@ -108,7 +108,9 @@ function Home() {
         </div>
 
         {/* <Cart cartItems={cartItems} onClear={handleOnClear} onCheckout={checkoutItems} totalPrice={totalPrice} /> */}
-        <ProdcutList products={storeItems} onPurchase={handleOnPurchase} />
+        <div className="home-products" id={"products"}>
+          <ProductsCarousel products={storeItems} onPurchase={handleOnPurchase} />
+        </div>
       </div>
     </div>
   );
