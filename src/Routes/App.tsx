@@ -1,6 +1,8 @@
 import React, { createContext, useState, useEffect } from 'react';
 import "./App.scss";
 import '../_reset.scss';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { Outlet } from 'react-router-dom';
 import Header from '../Components/Header/Header';
 import { itemType, initDB } from '../db';

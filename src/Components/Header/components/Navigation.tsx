@@ -1,22 +1,12 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import "./Navigation.scss"
+import { scrollToProducts } from '../../../Utils/ScrollToElement';
 
 export default function Navigation() {
 
     const { pathname } = useLocation();
 
-    function scrollToProducts(event: React.MouseEvent<HTMLDivElement>) {
-        event.preventDefault();
-
-        const productsElement = document.getElementById("products");
-        if (productsElement) {
-            window.scrollTo({
-                top: productsElement.offsetTop,
-                behavior: "smooth",
-            });
-        }
-    }
 
     return (
         <ul className='nav'>

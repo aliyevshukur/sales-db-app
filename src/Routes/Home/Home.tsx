@@ -7,6 +7,7 @@ import bigDecimal from 'js-big-decimal';
 import { CartContext, DBStatusContext } from '../App';
 import 'animate.css/animate.min.css';
 import ShopButton from '../../Components/ShopButton/ShopButton';
+import HeroImage from '../../Images/home-hero.png';
 
 
 function Home() {
@@ -103,7 +104,7 @@ function Home() {
             <div className="home-hero-text-subtitle">Discover premium speakers that bring your music to life.</div>
             <ShopButton />
           </div>
-          <img src="./home-hero.png" alt="" className="home-hero-image" />
+          <img src={HeroImage} alt="" className="home-hero-image" />
         </div>
 
         {/* <Cart cartItems={cartItems} onClear={handleOnClear} onCheckout={checkoutItems} totalPrice={totalPrice} /> */}
