@@ -1,7 +1,7 @@
 .header {
   display: flex;
   justify-content: flex-start;
-  padding: 20px 60px 20px 100px;
+  padding: 20px 0px;
   font-size: 16px;
   background-color: transparent;
   position: absolute;
@@ -15,7 +15,7 @@
     align-items: center;
     font-weight: bold;
     text-decoration: none;
-    margin-right: 140px;
+    margin: 0px 10vw;
 
     &-icon{
       width: 50px;
@@ -24,11 +24,11 @@
     &-text{
      color: white;
     }
-  }
-  &-logo:hover{
-    color: rgb(86, 86, 86);
-  }
 
+    &:hover{
+      color: rgb(86, 86, 86);
+    }
+  }
 }
 
 

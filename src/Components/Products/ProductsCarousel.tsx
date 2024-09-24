@@ -28,8 +28,8 @@ export default function ProductsCarousel({ products, onPurchase }: Props) {
                     height="50"
                     viewBox="0 0 24 24"
                 >
-                    <path fill-rule="evenodd"
-                        clip-rule="evenodd"
+                    <path fillRule="evenodd"
+                        clipRule="evenodd"
                         d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z" />
                 </svg>
             </div>
@@ -75,7 +75,7 @@ export default function ProductsCarousel({ products, onPurchase }: Props) {
             }
         }
     ]
-
+    // TODO There is bug on first render there is not any item with slick-current class
     const settings = {
         className: "center",
         centerMode: true,
