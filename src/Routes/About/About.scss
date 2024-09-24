@@ -38,6 +38,10 @@
     background-size: cover;
     background-attachment: fixed;
 
+    @include sm {
+      height: 60vh;
+    }
+
     &-wave {
       position: absolute;
       bottom: -2px;
@@ -53,8 +57,13 @@
       width: 800px;
 
       @include lg {
-        width: 600px;
-        font-size: 12px;
+        width: 550px;
+        font-size: 11px;
+      }
+
+      @include sm {
+        width: 350px;
+        font-size: 7px;
       }
 
       &-upper-title {
@@ -74,7 +83,7 @@
         margin-bottom: 20px;
         text-wrap: wrap;
         width: 50%;
-        line-height: 1.5rem;
+        line-height: 1.5em;
 
         &-bold {
           font-weight: 900;
