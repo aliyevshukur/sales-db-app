@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import "./Navigation.scss"
+import React, { useEffect, useRef, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { scrollToProducts } from '../../../Utils/ScrollToElement';
+import "./Navigation.scss";
 
 export default function Navigation() {
 
@@ -27,10 +27,10 @@ export default function Navigation() {
     return (
         <nav className='nav' ref={menuRef}>
             <button className="nav-toggle" onClick={() => setMenuOpen(!menuOpen)}>
-                <span className="nav-toggle-icon" />
-                <span className="nav-toggle-icon" />
-                <span className="nav-toggle-icon" />
-                <span className="nav-toggle-icon" />
+                <span className={`nav-toggle-icon ${menuOpen ? 'nav-toggle-icon-open' : ''}`} />
+                <span className={`nav-toggle-icon ${menuOpen ? 'nav-toggle-icon-open' : ''}`} />
+                <span className={`nav-toggle-icon ${menuOpen ? 'nav-toggle-icon-open' : ''}`} />
+                <span className={`nav-toggle-icon ${menuOpen ? 'nav-toggle-icon-open' : ''}`} />
             </button>
             <ul className={`nav-menu ${menuOpen ? 'nav-menu-open' : ''}`} >
                 <li className='nav-menu-item'>

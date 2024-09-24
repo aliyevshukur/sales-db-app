@@ -1,10 +1,10 @@
-import React from 'react'
-import './About.scss';
+import React from 'react';
 import AboutDecor1 from '../../Images/about-decor1.png';
 import AboutDecor2 from '../../Images/about-decor2.png';
 import SiteLogo from '../../Images/site-logo.png';
-import Wave from './Components/Wave';
+import './About.scss';
 import AboutItem from './Components/AboutItem';
+import Wave from './Components/Wave';
 
 export default function About() {
 
@@ -31,7 +31,7 @@ export default function About() {
                     <p className='about-section-1-text-desc'>
                         Our speakers are powered by cutting-edge audio technology that
                         delivers mind-blowing sound that wraps you in every
-                        <div className="about-section-1-text-desc-bold">audio like never before</div>
+                        <span className="about-section-1-text-desc-bold"> audio like never before</span>
                     </p>
                 </div>
                 <Wave width={"100%"} height={"100%"} />

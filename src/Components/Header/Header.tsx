@@ -9,25 +9,27 @@ import Navigation from './components/Navigation';
 
 export default function Header() {
     const [cartOpen, setCartOpen] = useState(false);
+    const [cartCount, setCartCount] = useState("0");
     const cartRef = useRef<HTMLDivElement>(null);
 
 
     useEffect(() => {
         function handleClickOutside(event: any) {
-            if (!cartRef.current?.contains(event.target)) {
+            if (cartOpen && !cartRef.current?.contains(event.target)) {
                 setCartOpen(false);
             }
         }
-
         document.addEventListener('mousedown', handleClickOutside);
-
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         }
     }, [])
 
+    function handleCartCount(count: number) {
+        setCartCount(count.toString());
+    }
     return (
-        <div className='header' ref={cartRef}>
+        <div className='header' >
             <Link to="/" className='header-logo'>
                 <img src={SiteLogo} alt="" className='header-logo-icon' />
                 <div className='header-logo-text'>
@@ -36,8 +38,9 @@ export default function Header() {
                 </div>
             </Link>
             <Navigation />
-            <CartButton onClick={() => { setCartOpen(!cartOpen) }} itemCount="0" />
-            {cartOpen && <Cart />}
+            <CartButton onClick={() => setCartOpen(!cartOpen)} itemCount={cartCount} />
+            {cartOpen ? <Cart sendCartCount={handleCartCount} cartRef={cartRef} />
+                : <Cart sendCartCount={handleCartCount} style={{ display: 'none' }} cartRef={cartRef} />}
         </div>
     )
 }

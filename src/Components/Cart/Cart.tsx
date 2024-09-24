@@ -6,7 +6,13 @@ import Button from '../Button/Button';
 import './Cart.scss';
 import CartItem from './CartItem';
 
-export default function Cart() {
+interface Props {
+    sendCartCount: (count: number) => void,
+    style?: {}
+    cartRef: any
+};
+
+export default function Cart({ sendCartCount, style, cartRef }: Props) {
     const [cartItems, setCartItems] = useContext(CartContext);
     const [totalPrice, setTotalPrice] = useState<number>(0);
 
@@ -19,10 +25,11 @@ export default function Cart() {
             })
             setTotalPrice(+totalPrice)
         }
-
         calculateTotalPrice();
+
+        sendCartCount(cartItems.length);
     }, [cartItems]);
-    console.log(`Car Items: ${cartItems}`)
+
     function handleOnClear() {
         clearStore('cartItemsStore')
             .then(() => {
@@ -32,7 +39,6 @@ export default function Cart() {
                 console.error("Failed to clear")
             });
     }
-
 
     function checkoutItems() {
         if (cartItems.length !== 0) {
@@ -53,10 +59,8 @@ export default function Cart() {
         }
     }
 
-
-
     return (
-        <div className='cart'>
+        <div className='cart' style={{ ...style }} ref={cartRef}>
             <div className='cartHeader'>Shopping cart</div>
             <div className='cartItemWrapper'>
                 {cartItems.map((item: itemType) => <CartItem name={item.name} price={item.price} />)}

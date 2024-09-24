@@ -1,7 +1,7 @@
-import React from 'react'
+import { on } from 'events';
+import React from 'react';
 import { LuShoppingCart } from "react-icons/lu";
 import "./CartButton.scss";
-import { on } from 'events';
 
 interface Props {
     itemCount: string,

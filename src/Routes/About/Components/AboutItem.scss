@@ -1,31 +1,42 @@
+@import "../../../_base.scss";
+
 .about-section-2-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background: repeating-linear-gradient(
+    -45deg,
+    #1f1f1f 0px,
+    #1f1f1f 5px,
+    #1f1f1f 6px,
+    #171717 11px,
+    #171717 12px
+  );
+  padding: 40px 20px;
+  border-radius: 30px;
+  width: 60%;
+
+  &-text {
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
     justify-content: center;
-    background: repeating-linear-gradient( -45deg, #1f1f1f 0px, #1f1f1f 5px, #1f1f1f 6px, #171717 11px, #171717 12px);
-    padding: 40px 20px;
-    border-radius: 30px;
+    color: white;
+    margin: 0px 50px;
 
-    &-text {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        color: white;
-        margin: 0px 50px;
-
-
-
-        &-title {
-            font-size: 40px;
-            margin-bottom: 20px;
-            font-weight: bold;
-
-        }
-
-        &-desc {
-            font-size: 20px;
-            line-height: 1.5em;
-            width: 600px;
-        }
+    &-title {
+      font-size: 40px;
+      margin-bottom: 20px;
+      font-weight: bold;
     }
+
+    &-desc {
+      font-size: 20px;
+      line-height: 1.5em;
+      width: 100%;
+
+      @include lg {
+        font-size: 16px;
+      }
+    }
+  }
 }
