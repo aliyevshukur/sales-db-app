@@ -1,7 +1,6 @@
 .header {
   display: flex;
   justify-content: flex-start;
-  padding: 20px 0px;
   font-size: 16px;
   background-color: transparent;
   position: absolute;
@@ -11,28 +10,27 @@
   z-index: 1;
 
   &-logo {
-    display:flex;
+    display: flex;
     align-items: center;
     font-weight: bold;
     text-decoration: none;
     margin: 0px 10vw;
 
-    &-icon{
+    &-icon {
       width: 50px;
     }
 
-    &-text{
-     color: white;
+    &-text {
+      color: white;
     }
 
-    &:hover{
+    &:hover {
       color: rgb(86, 86, 86);
     }
   }
 }
 
-
-@media only screen and (max-width:700px) {
+@media only screen and (max-width: 700px) {
   .header {
     padding: 5px;
     font-size: 3vw;

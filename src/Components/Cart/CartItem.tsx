@@ -1,5 +1,5 @@
 import React from 'react';
-import './CartItem.css';
+import './CartItem.scss';
 
 interface Props {
     name: string,

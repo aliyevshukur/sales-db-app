@@ -9,7 +9,7 @@ export default function ShopButton() {
         <div className='shop-button'>
             Shop now
             <div className="arrow-icon" onClick={(e) => scrollToProducts(e)}>
-                <FaArrowRight color={"white"} size={"35px"} />
+                <FaArrowRight color={"white"} />
             </div>
         </div>
     )

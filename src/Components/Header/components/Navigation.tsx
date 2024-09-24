@@ -44,12 +44,12 @@ export default function Navigation() {
                 </li>
                 <div className="nav-menu-dot" />
                 <li className='nav-menu-item'>
-                    {pathname === "about" && <div className="nav-menu-item-active" />}
+                    {pathname === "/about" && <div className="nav-menu-item-active" />}
                     <Link to={`about`} className='nav-menu-item-link'>About us</Link>
                 </li>
                 <div className="nav-menu-dot" />
                 <li className='nav-menu-item'>
-                    {pathname === "about" && <div className="nav-menu-item-active" />}
+                    {pathname === "/reciepts" && <div className="nav-menu-item-active" />}
                     <Link to={`reciepts`} className='nav-menu-item-link'>Reciepts</Link>
                 </li>
             </ul>

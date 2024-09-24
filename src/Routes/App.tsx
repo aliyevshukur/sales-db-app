@@ -1,10 +1,10 @@
-import React, { createContext, useState, useEffect } from 'react';
-import "./App.scss";
-import '../_reset.scss';
+import React, { createContext, useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import Header from '../Components/Header/Header';
+import '../_reset.scss';
 import Footer from '../Components/Footer/Footer';
-import { itemType, initDB } from '../db';
+import Header from '../Components/Header/Header';
+import { getData, initDB, itemType } from '../db';
+import "./App.scss";
 
 
 export const CartContext = createContext<any>([]);
@@ -22,6 +22,10 @@ export default function App() {
                 setDBStatus(status)
             });
 
+        getData('cartItemsStore')
+            .then((data) => {
+                setCartItems(data)
+            })
     }, []);
 
     return (<div className='app'>
