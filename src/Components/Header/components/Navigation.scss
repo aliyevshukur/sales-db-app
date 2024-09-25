@@ -22,17 +22,13 @@
       border-radius: 20px;
 
       &-open {
-        transform-origin: center;
-        // transform: rotate(45deg) translate(-50%, -50%);
         transition: transform ease-in-out 0.3s;
-
         &:nth-child(2) {
           transform: rotate(45deg) translate(10px, 10px);
         }
         &:nth-child(3) {
           transform: rotate(-45deg) translate(10px, -10px);
         }
-
         &:nth-child(1),
         &:nth-child(4) {
           display: none;

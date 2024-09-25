@@ -1,4 +1,5 @@
 @import "../../_theme.scss";
+@import "../../_base.scss";
 
 .cart {
   position: absolute;
@@ -27,7 +28,10 @@
   margin: 32px;
   padding: 10px;
 
-  transition: ease-in-out 5s;
+  @include sm {
+    right: 10px;
+    width: 250px;
+  }
 }
 
 .cartHeader {

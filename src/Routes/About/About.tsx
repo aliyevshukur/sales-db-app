@@ -1,6 +1,4 @@
 import React from 'react';
-import AboutDecor1 from '../../Images/about-decor1.png';
-import AboutDecor2 from '../../Images/about-decor2.png';
 import SiteLogo from '../../Images/site-logo.png';
 import './About.scss';
 import AboutItem from './Components/AboutItem';
@@ -21,9 +19,6 @@ export default function About() {
 
     return (
         <div className='about'>
-            {/* <img src={AboutDecor1} alt="about" className="about-decor-1" />
-            <img src={AboutDecor2} alt="about" className="about-decor-2" /> */}
-
             <div className="about-section-1" >
                 <div className="about-section-1-text">
                     <h3 className='about-section-1-text-upper-title'>Hear Every Detail, Feel Every Beat.</h3>

@@ -15,7 +15,7 @@ export default function Header() {
 
     useEffect(() => {
         function handleClickOutside(event: any) {
-            if (cartOpen && !cartRef.current?.contains(event.target)) {
+            if (!cartRef.current?.contains(event.target)) {
                 setCartOpen(false);
             }
         }

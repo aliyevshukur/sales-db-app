@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { itemType } from '../../db'
+import "slick-carousel/slick/slick.css";
+import { itemType } from '../../db';
 import Product from './Product';
 import './ProductsCarousel.scss';
 
@@ -95,6 +95,7 @@ export default function ProductsCarousel({ products, onPurchase }: Props) {
         nextArrow: <NextArrow />,
         prevArrow: <PrevArrow />
     };
+
     return (
         <Slider {...settings} className="product-slider" ref={slider => {
             sliderRef = slider;

@@ -9,7 +9,9 @@
     rgba(31, 31, 31, 1) 11%,
     rgba(37, 17, 16, 1) 54%,
     rgba(59, 14, 13, 1) 100%
-  );
+    );
+    color: white;
+    min-height: 100vh;
 }
 
 .reciepts {

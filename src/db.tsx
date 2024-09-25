@@ -1,48 +1,68 @@
+import Speaker1 from "./Images/speaker-1.png";
+import Speaker2 from "./Images/speaker-2.png";
+import Speaker3 from "./Images/speaker-3.png";
+import Speaker4 from "./Images/speaker-4.png";
+import Speaker5 from "./Images/speaker-5.png";
+import Speaker6 from "./Images/speaker-6.png";
+import Speaker7 from "./Images/speaker-7.png";
+import Speaker8 from "./Images/speaker-8.png";
+import Speaker9 from "./Images/speaker-9.png";
+
 const SHOPITEMS_DATA = [
     {
         id: 1,
-        name: "Gelatine Leaves - Envelopes",
-        price: "$9.05"
+        name: "EchoSlate",
+        price: "$299",
+        img: Speaker1
     },
     {
         id: 2,
-        name: "Beef - Striploin",
-        price: "$1.04"
+        name: "SoundNest",
+        price: "$199",
+        img: Speaker2
+
     },
     {
         id: 3,
-        name: "Wine - Magnotta - Belpaese",
-        price: "$6.61"
+        name: "PulseWave",
+        price: "$249",
+        img: Speaker3
     },
     {
         id: 4,
-        name: "Tray - Foam, Square 4 - S",
-        price: "$9.24"
+        name: "SonicForm",
+        price: "$279",
+        img: Speaker4
     },
     {
         id: 5,
-        name: "Bread - Rolls, Rye",
-        price: "$5.25"
+        name: "AeroSound",
+        price: "$329",
+        img: Speaker5
     },
     {
         id: 6,
-        name: "Kirsch - Schloss",
-        price: "$2.69"
+        name: "VibeCraft",
+        price: "$399",
+        img: Speaker6
     },
     {
         id: 7,
-        name: "Wine - White, Pelee Island",
-        price: "$2.10"
+        name: "NuWave",
+        price: "$249",
+        img: Speaker7
     },
     {
         id: 8,
-        name: "Trout - Rainbow, Frozen",
-        price: "$8.73"
+        name: "ClarityCube",
+        price: "$349",
+        img: Speaker8
     },
     {
         id: 9,
-        name: "Appetizer - Escargot Puff",
-        price: "$3.32"
+        name: "SilhouetteAudio",
+        price: "$279",
+        img: Speaker9
     },
 ];
 
@@ -51,7 +71,8 @@ const version = 1;
 export interface itemType {
     id: number,
     name: string,
-    price: string
+    price: string,
+    img: string
 }
 
 export interface purchaseType {
