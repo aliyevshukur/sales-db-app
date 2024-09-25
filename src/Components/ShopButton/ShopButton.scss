@@ -5,39 +5,64 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  border-radius: 50px;
-  background-color: transparent;
-  border: 2px solid $secondary;
-  color: white;
-  padding: 2vw 8vw 2vw 3vw;
   align-self: flex-start;
   position: relative;
-  font-size: 2vw;
+
+  border-radius: 50px;
+  border: 2px solid $secondary;
+
+  background-color: transparent;
+  color: white;
+  padding: 15px 70px 15px 20px;
   margin-top: 40px;
+  font-size: 24px;
   cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    box-shadow: inset 0px 3px 7px black;
+    transform: translateY(2px);
+  }
+
+  @include xl {
+    font-size: 18px;
+    // padding: 15px 50px 15px 20px;
+  }
+
+  @include md {
+    font-size: 16px;
+    padding: 12px 50px 12px 20px;
+  }
+
+  @include sm {
+    font-size: 14px;
+    padding: 10px 40px 10px 15px;
+  }
 
   .arrow-icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 30%;
+    width: 60px;
     aspect-ratio: 1/1;
     border-radius: 50%;
     background-color: $secondary;
     position: absolute;
-    right: -15px;
+    right: -10px;
+
+    @include xl {
+      width: 55px;
+    }
+
+    @include md {
+      width: 45px;
+    }
 
     @include sm {
-      width: 35%;
-
-      svg {
-        width: 20px;
-        height: 20px;
-        max-width: 100%;
-        height: auto;
-        /* Optional */
-        display: block;
-      }
+      width: 35px;
     }
   }
 }
