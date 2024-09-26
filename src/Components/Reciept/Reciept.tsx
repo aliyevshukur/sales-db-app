@@ -1,6 +1,6 @@
 import React from 'react'
-import './Reciept.css'
 import { itemType, recieptType } from '../../db'
+import './Reciept.scss'
 
 interface Props {
     reciept: recieptType
@@ -10,7 +10,7 @@ export default function Reciept({ reciept }: Props) {
 
     return (
         <div className='reciept'>
-            <div className='title'>SUPERMARKET</div>
+            <div className='title'>Planet Resonance</div>
             <div className='recieptInfo'>
                 <div>Lorem Ipsum 258</div>
                 <div>Cinty Index - 02025</div>
