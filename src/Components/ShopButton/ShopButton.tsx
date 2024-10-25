@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaArrowRight } from "react-icons/fa";
-import { scrollToProducts } from '../../Utils/ScrollToElement';
+import { scrollToProducts } from '../../lib/Utils/ScrollToElement';
 import "./ShopButton.scss";
 
 

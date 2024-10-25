@@ -1,18 +1,19 @@
 import bigDecimal from 'js-big-decimal';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { forwardRef, useContext, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { addSingleItem, clearStore, itemType } from '../../db';
 import { CartContext } from '../../Routes/App';
 import Button from '../Button/Button';
 import './Cart.scss';
-import CartItem from './CartItem';
+import CartItem from './CartItem/CartItem';
 
 interface Props {
-    sendCartCount: (count: number) => void,
-    style?: {}
-    cartRef: any
+    style?: {},
+    className?: string,
 };
 
-export default function Cart({ sendCartCount, style, cartRef }: Props) {
+
+const Cart = forwardRef<HTMLDivElement, Props>(({ style, className }: Props, ref) => {
     const [cartItems, setCartItems] = useContext(CartContext);
     const [totalPrice, setTotalPrice] = useState<number>(0);
 
@@ -27,7 +28,6 @@ export default function Cart({ sendCartCount, style, cartRef }: Props) {
         }
         calculateTotalPrice();
 
-        sendCartCount(cartItems.length);
     }, [cartItems]);
 
     function handleOnClear() {
@@ -41,7 +41,11 @@ export default function Cart({ sendCartCount, style, cartRef }: Props) {
     }
 
     function checkoutItems() {
+
         if (cartItems.length !== 0) {
+            toast.success("Checkout successfull", {
+                icon: false,
+            })
             const date = Date.now()
             const reciept = {
                 purchasedItems: cartItems,
@@ -56,20 +60,28 @@ export default function Cart({ sendCartCount, style, cartRef }: Props) {
                 .catch(() => {
                     console.error("Failed to clear")
                 });
+        } else {
+            toast.error("Cart is empty");
         }
     }
 
     return (
-        <div className='cart' style={{ ...style }} ref={cartRef}>
+        <div className={`cart ${className}`} style={{ ...style }} ref={ref}>
             <div className='cartHeader'>Shopping cart</div>
-            <div className='cartItemWrapper'>
-                {cartItems.map((item: itemType) => <CartItem name={item.name} price={item.price} />)}
-            </div>
-            <div className='totalPrice'>Total price: {totalPrice}$</div>
+            {cartItems.length === 0 ? <div className='cart-empty'>Cart is empty</div> :
+                <>
+                    <div className='cartItemWrapper'>
+                        {cartItems.map((item: itemType) => <CartItem key={item.id} name={item.name} price={item.price} img={item.img} />)}
+                    </div>
+                    <div className='totalPrice'>Total price: {totalPrice}$</div>
+                </>}
             <div className='buttonWrapper'>
                 <Button title={"Clear"} onClick={handleOnClear} />
                 <Button title={"Checkout"} onClick={checkoutItems} className='checkoutButton' />
             </div>
         </div>
     )
-}
+
+});
+
+export default Cart

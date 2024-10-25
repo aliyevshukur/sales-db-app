@@ -100,8 +100,8 @@ export default function ProductsCarousel({ products, onPurchase }: Props) {
         <Slider {...settings} className="product-slider" ref={slider => {
             sliderRef = slider;
         }}>
-            {products.map((product) =>
-                <Product key={product.id} product={product} onPurchase={onPurchase}
+            {products.map((product, index) =>
+                <Product key={index} product={product} onPurchase={onPurchase}
                 />)}
         </Slider>
     );

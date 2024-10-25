@@ -1,18 +1,17 @@
-import { on } from 'events';
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { LuShoppingCart } from "react-icons/lu";
 import "./CartButton.scss";
 
 interface Props {
-    itemCount: string,
-    onClick: () => void
+    itemCount: number,
+    onClick?: () => void
 }
 
-export default function CartButton({ itemCount = "0", onClick }: Props) {
+export default forwardRef<HTMLDivElement, Props>(function CartButton({ itemCount = 0, onClick }: Props, ref) {
     return (
-        <div className='cart-button' onClick={onClick}>
+        <div className='cart-button' onClick={onClick} ref={ref}>
             {itemCount}
             <LuShoppingCart color={"white"} />
         </div>
     )
-}
+});

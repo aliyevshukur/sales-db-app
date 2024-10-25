@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import SiteLogo from '../../Images/site-logo.png';
+import { CartContext } from '../../Routes/App';
 import Cart from '../Cart/Cart';
 import './Header.scss';
 import CartButton from './components/CartButton';
@@ -9,13 +10,20 @@ import Navigation from './components/Navigation';
 
 export default function Header() {
     const [cartOpen, setCartOpen] = useState(false);
-    const [cartCount, setCartCount] = useState("0");
+    const [cartItems] = useContext(CartContext);
+    const cartCount = cartItems.length;
     const cartRef = useRef<HTMLDivElement>(null);
+    const buttonRef = useRef<HTMLDivElement>(null);
+    console.log(`cart open ${cartOpen}`)
 
 
     useEffect(() => {
         function handleClickOutside(event: any) {
-            if (!cartRef.current?.contains(event.target)) {
+            // console.log(buttonRef.current?.contains(event.target));
+            if (buttonRef.current?.contains(event.target)) {
+                // console.log(`cart open ${cartOpen}`)
+                setCartOpen(!cartOpen);
+            } else if (!cartRef.current?.contains(event.target)) {
                 setCartOpen(false);
             }
         }
@@ -23,11 +31,9 @@ export default function Header() {
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         }
-    }, [])
+    }, [cartOpen]);
 
-    function handleCartCount(count: number) {
-        setCartCount(count.toString());
-    }
+
     return (
         <div className='header' >
             <Link to="/" className='header-logo'>
@@ -38,9 +44,8 @@ export default function Header() {
                 </div>
             </Link>
             <Navigation />
-            <CartButton onClick={() => setCartOpen(!cartOpen)} itemCount={cartCount} />
-            {cartOpen ? <Cart sendCartCount={handleCartCount} cartRef={cartRef} />
-                : <Cart sendCartCount={handleCartCount} style={{ display: 'none' }} cartRef={cartRef} />}
+            <CartButton itemCount={cartCount} ref={buttonRef} />
+            <Cart ref={cartRef} className={cartOpen ? 'cart-open' : ''} />
         </div>
     )
 }

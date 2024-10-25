@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react';
-import './Home.scss';
-import ProductsCarousel from '../../Components/Products/ProductsCarousel';
-import { itemType, getData, addSingleItem } from '../../db';
-import { DBStatusContext } from '../App';
 import 'animate.css/animate.min.css';
+import React, { useContext, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import ProductsCarousel from '../../Components/Products/ProductsCarousel';
 import ShopButton from '../../Components/ShopButton/ShopButton';
+import { addSingleItem, getData, itemType } from '../../db';
 import HeroImage from '../../Images/home-hero.png';
 import { CartContext } from '../../Routes/App';
+import { DBStatusContext } from '../App';
+import './Home.scss';
 
 
 
@@ -23,6 +24,9 @@ function Home() {
   }, [dbStatus]);
 
   function handleOnPurchase(product: itemType) {
+    toast.success(`Added ${product.name} to cart`, {
+      icon: false,
+    });
     addSingleItem(product, 'cartItemsStore')
       .then(() => {
         updateDB("cartItemsStore", setCartItems)

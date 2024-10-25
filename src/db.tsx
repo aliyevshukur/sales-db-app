@@ -10,63 +10,63 @@ import Speaker9 from "./Images/speaker-9.png";
 
 const SHOPITEMS_DATA = [
     {
-        id: 1,
+        itemId: 1,
         name: "EchoSlate",
         price: "$299",
         img: Speaker1
     },
     {
-        id: 2,
+        itemId: 2,
         name: "SoundNest",
         price: "$199",
         img: Speaker2
 
     },
     {
-        id: 3,
+        itemId: 3,
         name: "PulseWave",
         price: "$249",
         img: Speaker3
     },
     {
-        id: 4,
+        itemId: 4,
         name: "SonicForm",
         price: "$279",
         img: Speaker4
     },
     {
-        id: 5,
+        itemId: 5,
         name: "AeroSound",
         price: "$329",
         img: Speaker5
     },
     {
-        id: 6,
+        itemId: 6,
         name: "VibeCraft",
         price: "$399",
         img: Speaker6
     },
     {
-        id: 7,
+        itemId: 7,
         name: "NuWave",
         price: "$249",
         img: Speaker7
     },
     {
-        id: 8,
+        itemId: 8,
         name: "ClarityCube",
         price: "$349",
         img: Speaker8
     },
     {
-        id: 9,
+        itemId: 9,
         name: "SilhouetteAudio",
         price: "$279",
         img: Speaker9
     },
 ];
 
-const version = 1;
+const version = 5;
 
 export interface itemType {
     id: number,
@@ -98,13 +98,9 @@ export function initDB(): Promise<string> {
 
         request.onupgradeneeded = function (event: any) {
             db = request.result;
-            const shopItemsStore = db.createObjectStore("shopItemsStore", { keyPath: "id" });
-            const cartItemsStore = db.createObjectStore("cartItemsStore", { keyPath: "id" });
-            const recieptsStore = db.createObjectStore("recieptsStore", { autoIncrement: true });
-
-            shopItemsStore.createIndex('id', 'id', { unique: false });
-            cartItemsStore.createIndex('id', 'id', { unique: false });
-            recieptsStore.createIndex('id', 'id', { unique: false });
+            const shopItemsStore = db.createObjectStore("shopItemsStore", { keyPath: "itemId" });
+            const cartItemsStore = db.createObjectStore("cartItemsStore", { keyPath: "id", autoIncrement: true });
+            const recieptsStore = db.createObjectStore("recieptsStore", { keyPath: "id", autoIncrement: true });
         };
 
         request.onsuccess = function () {

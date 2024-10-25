@@ -1,5 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import '../_reset.scss';
 import Footer from '../Components/Footer/Footer';
 import Header from '../Components/Header/Header';
@@ -31,6 +33,7 @@ export default function App() {
     return (<div className='app'>
         <CartContext.Provider value={[cartItems, setCartItems]}>
             <DBStatusContext.Provider value={[dbStatus, setDBStatus]}>
+                <ToastContainer theme="dark" />
                 <Header />
                 <Outlet />
                 <Footer />
