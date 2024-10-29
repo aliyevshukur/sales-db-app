@@ -89,8 +89,17 @@
     }
 
     &-products {
+      display: flex;
+      flex-direction: column;
       background-color: $primary;
-      padding: 0px 70px;
+      padding: 70px;
+      overflow: hidden;
+
+      &-title {
+        font-size: 3rem;
+        color: white;
+        align-self: center;
+      }
     }
   }
 }

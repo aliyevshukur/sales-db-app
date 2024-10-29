@@ -7,20 +7,21 @@
     z-index: 99999;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: linear-gradient(
-      87deg,
-      rgba(74, 10, 10, 1) 0%,
-      rgba(54, 9, 5, 1) 47%,
-      rgba(41, 3, 3, 1) 100%
-    );
 
+    padding: 5px 0;
+    width: 40px;
+    height: 50px;
+    border-radius: 15px;
+    background: linear-gradient(
+      0deg,
+      rgb(133, 49, 48) 20%,
+      rgb(181, 68, 56) 100%
+    );
     svg {
-      fill: rgb(230, 19, 19);
+      fill: $primary;
     }
   }
+
   .custom-prevArrow {
     left: -30px;
 
@@ -30,6 +31,7 @@
       opacity: 0.5;
     }
   }
+
   .custom-nextArrow {
     right: -80px;
 
@@ -41,7 +43,6 @@
   }
   .custom-prevArrow:hover,
   .custom-nextArrow:hover {
-    fill: rgb(66, 66, 66);
     cursor: pointer;
   }
 }

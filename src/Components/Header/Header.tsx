@@ -45,7 +45,7 @@ export default function Header() {
             </Link>
             <Navigation />
             <CartButton itemCount={cartCount} ref={buttonRef} />
-            <Cart ref={cartRef} className={cartOpen ? 'cart-open' : ''} />
+            <Cart ref={cartRef} className={cartOpen ? 'cart-open' : ''} setCartOpen={setCartOpen} />
         </div>
     )
 }

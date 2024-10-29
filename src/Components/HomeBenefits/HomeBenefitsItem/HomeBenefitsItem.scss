@@ -1,0 +1,29 @@
+@import "../../../base";
+
+.homeBenefitsItem {
+  display: flex;
+
+  @include lg {
+    flex-basis: 32%;
+  }
+
+  &-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 7px;
+    color: white;
+
+    &-title {
+      font-size: 1rem;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    &-subtitle {
+      font-size: 0.8rem;
+      color: grey;
+      white-space: nowrap;
+    }
+  }
+}

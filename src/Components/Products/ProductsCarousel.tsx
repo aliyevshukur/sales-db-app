@@ -15,6 +15,7 @@ export default function ProductsCarousel({ products, onPurchase }: Props) {
 
     let sliderRef: any = useRef(null);
 
+
     function NextArrow(props: any) {
         const { className, style, onClick } = props;
         return (
@@ -24,13 +25,14 @@ export default function ProductsCarousel({ products, onPurchase }: Props) {
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="50"
-                    height="50"
                     viewBox="0 0 24 24"
+                    width="40"
+                    height="40"
                 >
-                    <path fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z" />
+                    <path
+                        d="m14.707 11.293-4-4A1 1 0 0 0 9 8v8a1 1 0 0 0 1.707.707l4-4a1 1 0 0 0 0-1.414z"
+                        data-name="Right"
+                    />
                 </svg>
             </div>
         );
@@ -45,18 +47,21 @@ export default function ProductsCarousel({ products, onPurchase }: Props) {
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="50"
-                    height="50"
                     viewBox="0 0 24 24"
+                    width="40"
+                    height="40"
                 >
-                    <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
+                    <path
+                        d="M14.383 7.076a1 1 0 0 0-1.09.217l-4 4a1 1 0 0 0 0 1.414l4 4A1 1 0 0 0 15 16V8a1 1 0 0 0-.617-.924z"
+                        data-name="Left"
+                    />
                 </svg>
             </div>
         );
     }
 
     useEffect(() => {
-        sliderRef?.slickGoTo(0);
+        // sliderRef?.slickGoTo(0);
     }, []);
 
     // An object containing responsive settings for the carousel
@@ -65,33 +70,32 @@ export default function ProductsCarousel({ products, onPurchase }: Props) {
             breakpoint: 1024,
             settings: {
                 slidesToShow: 2,
-                centerMode: false,
-            }
+                initialSlide: 0,
+                dots: true,
+
+            },
+
         }, {
             breakpoint: 768,
             settings: {
                 slidesToShow: 1,
-                centerMode: false,
             }
         }
     ]
+
     // TODO There is bug on first render there is not any item with slick-current class
     const settings = {
-        className: "center",
-        centerMode: true,
-        initialSlide: 0,
         infinite: true,
+        dots: true,
+        initialSlide: 0,
         centerPadding: "0px",
         draggable: true,
-        slidesToShow: 3, //changes on responsive
+        slidesToShow: 3,
         slidesToScroll: 1,
         responsive: responsiveSettings,
         swipeToSlide: true,
-        focusOnSelect: true,
         speed: 500,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        cssEase: "linear",
+        cssEase: "ease-in-out",
         nextArrow: <NextArrow />,
         prevArrow: <PrevArrow />
     };

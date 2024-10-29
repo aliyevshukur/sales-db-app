@@ -10,10 +10,11 @@ import CartItem from './CartItem/CartItem';
 interface Props {
     style?: {},
     className?: string,
+    setCartOpen: (value: boolean) => void
 };
 
 
-const Cart = forwardRef<HTMLDivElement, Props>(({ style, className }: Props, ref) => {
+const Cart = forwardRef<HTMLDivElement, Props>(({ style, className, setCartOpen }: Props, ref) => {
     const [cartItems, setCartItems] = useContext(CartContext);
     const [totalPrice, setTotalPrice] = useState<number>(0);
 
@@ -41,7 +42,7 @@ const Cart = forwardRef<HTMLDivElement, Props>(({ style, className }: Props, ref
     }
 
     function checkoutItems() {
-
+        setCartOpen(false);
         if (cartItems.length !== 0) {
             toast.success("Checkout successfull", {
                 icon: false,

@@ -33,7 +33,7 @@ export default function App() {
     return (<div className='app'>
         <CartContext.Provider value={[cartItems, setCartItems]}>
             <DBStatusContext.Provider value={[dbStatus, setDBStatus]}>
-                <ToastContainer theme="dark" />
+                <ToastContainer theme="dark" position='bottom-right' />
                 <Header />
                 <Outlet />
                 <Footer />

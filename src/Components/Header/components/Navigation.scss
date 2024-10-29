@@ -20,18 +20,18 @@
       height: 3px;
       background-color: #ffffff;
       border-radius: 20px;
+      transition: all ease-in-out 0.3s;
+      transform-origin: top left;
 
       &-open {
-        transition: transform ease-in-out 0.3s;
-        &:nth-child(2) {
-          transform: rotate(45deg) translate(10px, 10px);
+        &:nth-child(1) {
+          transform: rotate(45deg) translate(2px, 0px);
         }
         &:nth-child(3) {
-          transform: rotate(-45deg) translate(10px, -10px);
+          transform: rotate(-45deg) translate(2px, -3px);
         }
-        &:nth-child(1),
-        &:nth-child(4) {
-          display: none;
+        &:nth-child(2) {
+          opacity: 0;
         }
       }
     }

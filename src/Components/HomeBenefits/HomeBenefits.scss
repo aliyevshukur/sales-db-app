@@ -1,0 +1,23 @@
+@import "../../_theme.scss";
+@import "../../_base.scss";
+
+.homeBenefits {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+
+  padding: 80px 100px;
+  background-color: $primary-darker;
+
+  @include sm {
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+  }
+
+  @include lg {
+    flex-wrap: wrap;
+    padding: 80px 10px;
+    justify-content: space-evenly;
+  }
+}

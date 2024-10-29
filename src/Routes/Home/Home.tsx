@@ -1,6 +1,7 @@
 import 'animate.css/animate.min.css';
 import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import HomeBenefits from '../../Components/HomeBenefits/HomeBenefits';
 import ProductsCarousel from '../../Components/Products/ProductsCarousel';
 import ShopButton from '../../Components/ShopButton/ShopButton';
 import { addSingleItem, getData, itemType } from '../../db';
@@ -69,7 +70,10 @@ function Home() {
           <img src={HeroImage} alt="" className="home-hero-image" />
         </div>
 
+        <HomeBenefits />
+
         <div className="home-products" id={"products"}>
+          <div className="home-products-title">Our Products</div>
           <ProductsCarousel products={storeItems} onPurchase={handleOnPurchase} />
         </div>
       </div>

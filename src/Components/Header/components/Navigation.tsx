@@ -43,7 +43,6 @@ export default function Navigation() {
                 <span className={`nav-toggle-icon ${menuOpen ? 'nav-toggle-icon-open' : ''}`} />
                 <span className={`nav-toggle-icon ${menuOpen ? 'nav-toggle-icon-open' : ''}`} />
                 <span className={`nav-toggle-icon ${menuOpen ? 'nav-toggle-icon-open' : ''}`} />
-                <span className={`nav-toggle-icon ${menuOpen ? 'nav-toggle-icon-open' : ''}`} />
             </button>
             <ul className={`nav-menu ${menuOpen ? 'nav-menu-open' : ''}`} >
                 <li className='nav-menu-item'>
