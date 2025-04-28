@@ -10,7 +10,7 @@ interface Props {
 export default forwardRef<HTMLDivElement, Props>(function CartButton({ itemCount = 0, onClick }: Props, ref) {
     return (
         <div className='cart-button' onClick={onClick} ref={ref}>
-            {itemCount}
+            <div>{itemCount}</div>
             <LuShoppingCart color={"white"} />
         </div>
     )

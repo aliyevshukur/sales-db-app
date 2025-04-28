@@ -1,17 +1,19 @@
+@import '../../_theme';
+
 .recieptPage {
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: center;
 
     padding: 120px 30px 30px 30px;
+    color: white;
     background: linear-gradient(
     45deg,
     rgba(31, 31, 31, 1) 11%,
     rgba(37, 17, 16, 1) 54%,
     rgba(59, 14, 13, 1) 100%
     );
-    color: white;
-    min-height: 100vh;
+     min-height: 100vh;
 }
 
 .reciepts {
@@ -22,3 +24,13 @@
     gap: 30px;
     padding: 30px;
 }
+
+.no-purchase {
+    padding: 20px;
+    background-color: $primary;
+    border-radius: 10px;
+}
+
+.no-purchase p:nth-child(1) {
+    margin-bottom: 20px;
+  }

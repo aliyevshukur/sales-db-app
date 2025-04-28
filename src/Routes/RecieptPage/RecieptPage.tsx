@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import Reciept from '../../Components/Reciept/Reciept'
-import { recieptType, getData, clearStore } from '../../db'
-import "./RecieptPage.css"
+import React, { useEffect, useState } from 'react';
 import Button from '../../Components/Button/Button';
+import Reciept from '../../Components/Reciept/Reciept';
+import { clearStore, getData, recieptType } from '../../db';
+import "./RecieptPage.scss";
 
 
 export default function RecieptPage() {
@@ -34,7 +34,12 @@ export default function RecieptPage() {
     }
 
     if (reciepts.length === 0) {
-        return <div className='recieptPage'>No reciepts yet</div>
+        return (<div className='recieptPage'>
+            <div className='no-purchase'>
+                <p>You haven't purchased anything yet!</p>
+                <p>After the purchase reciepts will show here.</p>
+            </div>
+        </div>)
     }
 
     return (

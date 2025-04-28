@@ -1,27 +1,30 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import "./Navigation.scss";
+import NavigationButton from './NavigationButton/NavigationButton';
 
-export default function Navigation() {
+interface Props {
+    menuOpen: Boolean
+}
 
+export default function Navigation({ menuOpen }: Props) {
     const { pathname } = useLocation();
-    const [menuOpen, setMenuOpen] = useState(false);
     const menuRef = useRef<HTMLElement>(null);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        function handleClickOutside(event: any) {
-            if (!menuRef.current?.contains(event.target)) {
-                setMenuOpen(false);
-            }
-        }
+    // useEffect(() => {
+    //     function handleClickOutside(event: any) {
+    //         if (!menuRef.current?.contains(event.target)) {
+    //             setMenuOpen(false);
+    //         }
+    //     }
 
-        document.addEventListener('mousedown', handleClickOutside);
+    //     document.addEventListener('mousedown', handleClickOutside);
 
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        }
-    }, [])
+    //     return () => {
+    //         document.removeEventListener('mousedown', handleClickOutside);
+    //     }
+    // }, [])
 
     function scrollToProducts(event: React.MouseEvent<HTMLDivElement>, pathname: string) {
         event.preventDefault();
@@ -37,13 +40,10 @@ export default function Navigation() {
         }
     }
 
+
+
     return (
         <nav className='nav' ref={menuRef}>
-            <button className="nav-toggle" onClick={() => setMenuOpen(!menuOpen)}>
-                <span className={`nav-toggle-icon ${menuOpen ? 'nav-toggle-icon-open' : ''}`} />
-                <span className={`nav-toggle-icon ${menuOpen ? 'nav-toggle-icon-open' : ''}`} />
-                <span className={`nav-toggle-icon ${menuOpen ? 'nav-toggle-icon-open' : ''}`} />
-            </button>
             <ul className={`nav-menu ${menuOpen ? 'nav-menu-open' : ''}`} >
                 <li className='nav-menu-item'>
                     {pathname === "/" && <div className="nav-menu-item-active" />}

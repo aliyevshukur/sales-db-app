@@ -6,10 +6,12 @@ import Cart from '../Cart/Cart';
 import './Header.scss';
 import CartButton from './components/CartButton';
 import Navigation from './components/Navigation';
+import NavigationButton from './components/NavigationButton/NavigationButton';
 
 
 export default function Header() {
     const [cartOpen, setCartOpen] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
     const [cartItems] = useContext(CartContext);
     const cartCount = cartItems.length;
     const cartRef = useRef<HTMLDivElement>(null);
@@ -33,7 +35,9 @@ export default function Header() {
         }
     }, [cartOpen]);
 
-
+    function toggleMenu() {
+        setMenuOpen(!menuOpen)
+    }
     return (
         <div className='header' >
             <Link to="/" className='header-logo'>
@@ -43,9 +47,10 @@ export default function Header() {
                     <div>Resonance</div>
                 </div>
             </Link>
-            <Navigation />
+            <Navigation menuOpen={menuOpen} />
             <CartButton itemCount={cartCount} ref={buttonRef} />
             <Cart ref={cartRef} className={cartOpen ? 'cart-open' : ''} setCartOpen={setCartOpen} />
+            <NavigationButton menuOpen={menuOpen} toggleMenu={toggleMenu} />
         </div>
     )
 }

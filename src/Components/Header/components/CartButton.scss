@@ -7,10 +7,10 @@
   align-items: center;
   background-color: $secondary;
   border-radius: 20px;
-  width: 60px;
-  height: 40px;
+  padding: 10px 12px;
   color: white;
-  margin: 20px 50px 0px auto;
+  margin-right: 15px;
+  margin-left: auto;
   cursor: pointer;
   transition: box-shadow 0.15s ease, transform 0.15s ease;
   will-change: box-shadow, transform;
@@ -26,6 +26,12 @@
   }
 
   @include lg {
-    margin-left: 25px;
+  }
+
+  @include md {
+  }
+
+  &>div {
+    margin-right: 10px;
   }
 }
