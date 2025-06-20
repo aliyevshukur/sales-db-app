@@ -1,6 +1,11 @@
 
-export function scrollToProducts(event: React.MouseEvent<HTMLDivElement>) {
+export function scrollToProducts(event: React.MouseEvent<HTMLDivElement>, pathname: string, navigate: any) {
     event.preventDefault();
+
+
+    if (pathname !== "/") {
+        navigate("/");
+    }
 
     const productsElement = document.getElementById("products");
     if (productsElement) {

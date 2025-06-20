@@ -1,75 +1,52 @@
 @import "../../_theme.scss";
 @import "../../_base.scss";
 
-.footer {
+.footer-wrapper {
   background-color: #333;
   color: #fff;
-  padding: 20px;
+  padding: 24px 12px;
 
-  .container {
+  .footer {
     max-width: 100%;
     margin: 0 auto;
-  }
 
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    margin-top: 30px;
-
-    @include sm {
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .line {
-      width: 80%;
-      height: 1px;
-      background-color: #666;
-    }
-  }
-
-  .col-md-4 {
-    .logo {
+    &-logo {
       display: flex;
       align-items: center;
-      margin-bottom: 20px;
+      font-size: 1.5rem;
+      margin-bottom: 24px;
 
       img {
-        max-width: 50px;
-        max-height: 50px;
-        margin-right: 10px;
-      }
-
-      h2 {
-        font-size: 18px;
-        font-weight: bold;
-        color: #fff;
+        width: 60px;
       }
     }
-  }
 
-  h4 {
-    font-weight: bold;
-    margin-bottom: 1.5vw;
-  }
+    &-links {
+      display: flex;
+      justify-content: space-around;
+      font-size: 0.8rem;
 
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+      &-row {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        & a:visited {
+          color: #fff;
+        }
+        & li {
+          & a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+          }
+          margin-bottom: 5px;
+        }
 
-  li {
-    margin-bottom: 1.5vw;
-  }
-
-  a {
-    color: #fff;
-    text-decoration: none;
-
-    &:hover {
-      color: #ccc;
+        &-title {
+          font-weight: 700;
+          margin-bottom: 5px;
+        }
+      }
     }
   }
 }

@@ -1,0 +1,79 @@
+@import "../../../../_theme.scss";
+@import "../../../../_base.scss";
+
+.nav {
+  &-menu {
+    display: none;
+    flex-direction: row;
+    background: none;
+    width: 100%;
+    height: 100%;
+    padding: 0px 30px;
+    list-style-type: none;
+    align-items: center;
+    color: white;
+
+    @include tb {
+      display: flex;
+    }
+
+    @include ls {
+      padding: 0px 60px;
+    }
+
+    &-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-wrap: nowrap;
+      position: relative;
+      padding-right: 15px;
+
+      @include ls {
+        padding-right: 30px;
+      }
+
+      &-link {
+        display: inline-block;
+        text-decoration: none;
+        color: white;
+        cursor: pointer;
+        font-size: 1em;
+
+        &:hover {
+          color: rgb(169, 169, 169);
+          transition: ease-in-out 0.3s;
+        }
+
+        @include ls {
+          font-size: 14px;
+        }
+      }
+
+      &-active {
+        &::after {
+          content: "";
+          position: absolute;
+          top: -19px;
+          width: 100%;
+          height: 8px;
+          border-bottom-left-radius: 13px;
+          border-bottom-right-radius: 13px;
+          background-color: $secondary;
+        }
+      }
+    }
+
+    &-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: white;
+      margin-right: 15px;
+
+      @include ls {
+        margin-right: 30px;
+      }
+    }
+  }
+}

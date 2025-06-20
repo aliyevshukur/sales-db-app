@@ -1,6 +1,5 @@
 import React from 'react';
 import './NavigationButton.scss';
-
 interface Props {
     menuOpen: boolean,
     toggleMenu: any,

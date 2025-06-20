@@ -12,8 +12,8 @@ export default function CartItem({ name, price, img }: Props) {
     return (
         <div className='cartItem'>
             <img src={img} alt="" className="cartItem-img" />
-            <div className='name'>{name}</div>
-            <div className='price'>{price}</div>
+            <div className='cartItem-name'>{name}</div>
+            <div className='cartItem-price'>{price}</div>
         </div>
     )
 }

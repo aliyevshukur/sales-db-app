@@ -1,40 +1,41 @@
 import React from 'react';
-import './Footer.scss';
-import SiteLogo from '../../Images/site-logo.png';
+import { FaFacebookSquare, FaInstagramSquare } from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
+import SiteLogo from '../../Images/site-logo.png';
+import './Footer.scss';
 
 const Footer = () => {
     return (
-        <footer className="footer">
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-4">
-                        <div className="logo">
-                            <img src={SiteLogo} alt="Company Logo" />
-                            <h2>Planet Resonance</h2>
-                        </div>
-                    </div>
-                    <div className="col-md-4">
-                        <h4>Quick Links</h4>
+        <footer className="footer-wrapper">
+            <div className="footer">
+                <div className="footer-logo">
+                    <img src={SiteLogo} alt="Company Logo" />
+                    <h2>Planet Resonance</h2>
+                </div>
+
+                <div className="footer-links">
+                    <div className="footer-links-row">
+                        <h4 className='footer-links-row-title'>Quick Links:</h4>
                         <ul>
                             <li><Link to="/">Home</Link></li>
                             <li><Link to="/about">About</Link></li>
                             <li><Link to="/reciepts">Reciepts</Link></li>
                         </ul>
                     </div>
-                    <div className="col-md-4">
-                        <h4>Follow Us</h4>
+                    <div className="footer-links-row">
+                        <h4 className='footer-links-row-title'>Follow Us:</h4>
                         <ul>
-                            <li><a target="_blank" rel="noopener noreferrer"><i className="fa fa-facebook" aria-hidden="true"></i> Facebook</a></li>
-                            <li><a target="_blank" rel="noopener noreferrer"><i className="fa fa-twitter" aria-hidden="true"></i> Twitter</a></li>
-                            <li><a target="_blank" rel="noopener noreferrer"><i className="fa fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+                            <li><a target="_blank" rel="noopener noreferrer"><FaFacebookSquare size={"1rem"} /> Facebook</a></li>
+                            <li><a target="_blank" rel="noopener noreferrer"><FaInstagramSquare size={"1rem"} /> Instagram</a></li>
+                            <li><a target="_blank" rel="noopener noreferrer"><FaSquareXTwitter size={"1rem"} /> X (Twitter)</a></li>
                         </ul>
                     </div>
                 </div>
-                <div className="row">
+                <div className="footer-row">
                     <div className="line" />
                 </div>
-                <div className="row">
+                <div className="footer-row">
                     <div className="copyright">
                         <p>&copy; 2023 Company Name. All rights reserved.</p>
                     </div>

@@ -71,7 +71,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 
-  @include sm {
+  @include ms {
     margin-right: 80px;
   }
 }

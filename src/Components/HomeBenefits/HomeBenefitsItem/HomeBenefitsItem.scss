@@ -1,10 +1,16 @@
 @import "../../../base";
+@import "../../../theme";
 
 .homeBenefitsItem {
   display: flex;
+  padding: 24px 12px;
 
-  @include lg {
-    flex-basis: 32%;
+  @include tb {
+    flex: 0 0 50%;
+  }
+
+  @include ls {
+    padding-left: 20px;
   }
 
   &-text {
@@ -25,5 +31,27 @@
       color: grey;
       white-space: nowrap;
     }
+  }
+}
+
+.homeBenefitsItem:nth-child(1),
+.homeBenefitsItem:nth-child(3) {
+  background-color: $primary;
+}
+
+.homeBenefitsItem:nth-child(2),
+.homeBenefitsItem:nth-child(4) {
+  background-color: $primary-darker;
+}
+
+@include tb {
+  .homeBenefitsItem:nth-child(2),
+  .homeBenefitsItem:nth-child(3) {
+    background-color: $primary;
+  }
+
+  .homeBenefitsItem:nth-child(1),
+  .homeBenefitsItem:nth-child(4) {
+    background-color: $primary-darker;
   }
 }

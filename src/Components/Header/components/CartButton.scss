@@ -25,13 +25,13 @@
     transform: translateY(2px);
   }
 
-  @include lg {
+  @include ls {
   }
 
-  @include md {
+  @include ml {
   }
 
-  &>div {
+  & > div {
     margin-right: 10px;
   }
 }

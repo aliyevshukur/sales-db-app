@@ -1,0 +1,56 @@
+@import "../../../../theme";
+@import "../../../../base";
+
+.mobileNav {
+  position: relative;
+
+  @include tb {
+    display: none;
+  }
+
+  &-menu {
+    position: absolute;
+    top: 58px;
+    right: 10px;
+
+    display: flex;
+    flex-direction: column;
+    padding: 0px 18px;
+    background-color: $primary;
+    border-radius: 20px;
+
+    opacity: 0;
+    transform: translateX(200px);
+    transition: opacity 300ms ease-in-out, transform 200ms ease-out;
+
+    &-open {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    &-item {
+      display: flex;
+      align-items: center;
+      color: white;
+      cursor: pointer;
+      width: 130px;
+      height: 50px;
+
+      &:hover {
+        color: rgb(169, 169, 169);
+        transition: ease-in-out 0.3s;
+      }
+
+      &-link {
+        text-decoration: none;
+        margin-left: 6px;
+
+        &:visited,
+        &:active,
+        &:hover {
+          color: inherit;
+        }
+      }
+    }
+  }
+}

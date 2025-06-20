@@ -1,25 +1,31 @@
 @import "../../base";
 
 .header {
+  position: fixed;
   height: 58px;
-  padding: 10px;
+  padding: 0px 10px;
+  background-color: transparent;
+  font-size: 16px;
+
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  font-size: 16px;
-  background-color: transparent;
-  position: absolute;
+
   top: 0px;
   left: 0px;
   right: 0px;
   z-index: 1;
+
+  @include tb {
+    position: static;
+  }
 
   &-logo {
     display: flex;
     align-items: center;
     font-weight: bold;
     text-decoration: none;
-    margin: 0px 10vw;
+    // margin: 0px 10vw;
 
     &-icon {
       width: 50px;
@@ -31,10 +37,6 @@
 
     &:hover {
       color: rgb(86, 86, 86);
-    }
-
-    @include lg {
-      margin: 0 6vw;
     }
   }
 }

@@ -1,0 +1,38 @@
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: rgba(240, 46, 50, 0.4) 5px 5px, rgba(240, 46, 50, 0.3) 10px 10px,
+      rgba(240, 46, 50, 0.2) 15px 15px, rgba(240, 46, 50, 0.1) 20px 20px,
+      rgba(240, 46, 50, 0.05) 25px 25px;
+  }
+  50% {
+    box-shadow: rgba(240, 46, 50, 0.7) 6px 6px, rgba(240, 46, 50, 0.5) 11px 11px,
+      rgba(240, 46, 50, 0.4) 16px 16px, rgba(240, 46, 50, 0.3) 21px 21px,
+      rgba(240, 46, 50, 0.2) 26px 26px;
+  }
+}
+.shadow-pulse {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.carbon-fiber {
+  height: 24px;
+  width: 100%;
+  background-image: repeating-linear-gradient(
+    45deg,
+    #1a1a1a 0px,
+    #1a1a1a 8px,
+    #2a2a2a 8px,
+    #2a2a2a 16px
+  );
+  background-size: 24px 24px;
+  animation: carbonFiber 2s linear infinite;
+}
+@keyframes carbonFiber {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 24px 0; /* ← Moves horizontally */
+  }
+}

@@ -6,6 +6,7 @@ import ProductsCarousel from '../../Components/Products/ProductsCarousel';
 import ShopButton from '../../Components/ShopButton/ShopButton';
 import { addSingleItem, getData, itemType } from '../../db';
 import HeroImage from '../../Images/home-hero.png';
+import useStretchLetterSpacing from '../../lib/Hooks/useStretchLetterspacing';
 import { CartContext } from '../../Routes/App';
 import { DBStatusContext } from '../App';
 import './Home.scss';
@@ -16,6 +17,8 @@ function Home() {
   const [dbStatus] = useContext(DBStatusContext);
   const [storeItems, setStoreItems] = useState<Array<itemType>>([]);
   const [cartItems, setCartItems] = useContext(CartContext);
+  const subtitleText = "Unleash the Sound. Elevate Your Experience."
+  const { letterSpacing: subtitleLetterSpacing, containerRef: subtitleContainerRef, textRef: subtitleTextRef } = useStretchLetterSpacing(subtitleText);
 
 
   useEffect(() => {
@@ -50,10 +53,9 @@ function Home() {
   if (dbStatus === "pending") {
     return <div>Loading...</div>
   }
-
+  console.log("TEST: " + subtitleLetterSpacing)
   return (
     <div className="home-wrapper">
-
       <div className="home-wrapper-background">
         <div className="home-wrapper-background-square" />
         <div className="home-wrapper-background-round-overlay" />
@@ -61,11 +63,13 @@ function Home() {
 
       <div className='home'>
         <div className="home-hero">
-          <div className="home-hero-text">
-            <div className="home-hero-text-upper-subtitle">Unleash the Sound. Elevate Your Experience.</div>
+          <div className="home-hero-text" ref={subtitleContainerRef} style={{ letterSpacing: `${subtitleLetterSpacing}px` }}>
+            <div className="home-hero-text-upper-subtitle" ref={subtitleTextRef}>{subtitleText}</div>
             <div className="home-hero-text-title">SPEAKERS</div>
             <div className="home-hero-text-subtitle">Discover premium speakers that bring your music to life.</div>
             <ShopButton />
+
+
           </div>
           <img src={HeroImage} alt="" className="home-hero-image" />
         </div>

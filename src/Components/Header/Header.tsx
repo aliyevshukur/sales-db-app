@@ -5,8 +5,8 @@ import { CartContext } from '../../Routes/App';
 import Cart from '../Cart/Cart';
 import './Header.scss';
 import CartButton from './components/CartButton';
-import Navigation from './components/Navigation';
-import NavigationButton from './components/NavigationButton/NavigationButton';
+import MobileNavigation from './components/MobileNavigation/MobileNavigation';
+import Navigation from './components/Navigation/Navigation';
 
 
 export default function Header() {
@@ -35,9 +35,13 @@ export default function Header() {
         }
     }, [cartOpen]);
 
-    function toggleMenu() {
-        setMenuOpen(!menuOpen)
+    function toggleMenu(flag?: boolean) {
+
+        if (flag === undefined)
+            setMenuOpen(!menuOpen)
+        else setMenuOpen(flag);
     }
+
     return (
         <div className='header' >
             <Link to="/" className='header-logo'>
@@ -47,10 +51,10 @@ export default function Header() {
                     <div>Resonance</div>
                 </div>
             </Link>
-            <Navigation menuOpen={menuOpen} />
+            <Navigation />
             <CartButton itemCount={cartCount} ref={buttonRef} />
             <Cart ref={cartRef} className={cartOpen ? 'cart-open' : ''} setCartOpen={setCartOpen} />
-            <NavigationButton menuOpen={menuOpen} toggleMenu={toggleMenu} />
+            <MobileNavigation menuOpen={menuOpen} toggleMenu={toggleMenu} />
         </div>
     )
 }

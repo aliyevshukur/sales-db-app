@@ -21,7 +21,7 @@
     background-size: cover;
     background-attachment: fixed;
 
-    @include sm {
+    @include ms {
       height: 60vh;
     }
 
@@ -39,12 +39,12 @@
       align-self: center;
       width: 800px;
 
-      @include lg {
+      @include ls {
         width: 550px;
         font-size: 11px;
       }
 
-      @include sm {
+      @include ms {
         width: 350px;
         font-size: 7px;
       }

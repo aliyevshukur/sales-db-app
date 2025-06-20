@@ -15,7 +15,7 @@
   color: white;
   padding: 15px 70px 15px 20px;
   margin-top: 40px;
-  font-size: 24px;
+  font-size: 1rem;
   cursor: pointer;
 
   &:hover {
@@ -27,42 +27,15 @@
     transform: translateY(2px);
   }
 
-  @include xl {
-    font-size: 18px;
-    // padding: 15px 50px 15px 20px;
-  }
-
-  @include md {
-    font-size: 16px;
-    padding: 12px 50px 12px 20px;
-  }
-
-  @include sm {
-    font-size: 14px;
-    padding: 10px 40px 10px 15px;
-  }
-
   .arrow-icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 60px;
+    width: 3rem;
     aspect-ratio: 1/1;
     border-radius: 50%;
     background-color: $secondary;
     position: absolute;
-    right: -10px;
-
-    @include xl {
-      width: 55px;
-    }
-
-    @include md {
-      width: 45px;
-    }
-
-    @include sm {
-      width: 35px;
-    }
+    right: 0px;
   }
 }

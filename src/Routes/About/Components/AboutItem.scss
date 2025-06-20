@@ -17,22 +17,22 @@
 
   font-size: 20px;
 
-  @include xl {
+  @include ll {
     font-size: 16px;
   }
 
-  @include lg {
+  @include ls {
     font-size: 14px;
     width: 70%;
   }
 
-  @include md {
+  @include ml {
     font-size: 14px;
     padding: 40px 10px;
     width: 90%;
   }
 
-  @include sm {
+  @include ms {
     font-size: 10px;
     padding: 40px 5px;
     width: 90%;
