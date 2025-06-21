@@ -10,7 +10,7 @@ export default function Reciept({ reciept }: Props) {
 
     return (
         <div className='reciept'>
-            <div className='title'>Planet Resonance</div>
+            <div className='title'>Rosenance</div>
             <div className='recieptInfo'>
                 <div>Lorem Ipsum 258</div>
                 <div>Cinty Index - 02025</div>

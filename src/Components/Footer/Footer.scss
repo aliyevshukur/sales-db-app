@@ -10,21 +10,11 @@
     max-width: 100%;
     margin: 0 auto;
 
-    &-logo {
-      display: flex;
-      align-items: center;
-      font-size: 1.5rem;
-      margin-bottom: 24px;
-
-      img {
-        width: 60px;
-      }
-    }
-
     &-links {
       display: flex;
       justify-content: space-around;
       font-size: 0.8rem;
+      margin-top: 20px;
 
       &-row {
         display: flex;

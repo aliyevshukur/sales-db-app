@@ -13,11 +13,21 @@ interface Props {
 export default function MobileNavigation({ menuOpen, toggleMenu }: Props) {
     const { pathname } = useLocation();
     const navigate = useNavigate();
-    const menuRef = useRef<HTMLElement>(null)
+    const menuRef = useRef<HTMLUListElement>(null)
+    const btnRef = useRef<HTMLButtonElement>(null)
 
     useEffect(() => {
         function handleClickOutside(event: any) {
-            if (!menuRef.current?.contains(event.target)) toggleMenu(false);
+
+            if (!btnRef.current?.contains(event.target)) {
+                toggleMenu(false);
+            }
+            if (menuRef.current?.contains(event.target)) {
+                setTimeout(() => {
+                    toggleMenu(false);
+                }, 0);
+            }
+
         }
         document.addEventListener('mousedown', handleClickOutside);
 
@@ -27,9 +37,9 @@ export default function MobileNavigation({ menuOpen, toggleMenu }: Props) {
     }, [])
 
     return (
-        <nav className='mobileNav' ref={menuRef}>
-            <NavigationButton menuOpen={menuOpen} toggleMenu={toggleMenu} />
-            <ul className={`mobileNav-menu ${menuOpen ? 'mobileNav-menu-open' : ''}`} >
+        <nav className='mobileNav'>
+            <NavigationButton menuOpen={menuOpen} toggleMenu={toggleMenu} ref={btnRef} />
+            <ul className={`mobileNav-menu ${menuOpen ? 'mobileNav-menu-open' : ''}`} ref={menuRef}>
                 <li className='mobileNav-menu-item'>
                     {pathname === "/" && <div className="mobileNav-menu-item-active" />}
                     <CustomIcon name="home" size={20} />

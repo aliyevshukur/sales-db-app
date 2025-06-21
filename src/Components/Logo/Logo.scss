@@ -1,0 +1,24 @@
+@import "../../base";
+
+.site-logo {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  text-decoration: none;
+  // margin: 0px 10vw;
+
+  &-icon {
+    width: 30px;
+  }
+
+  &-text {
+    color: white;
+    font-size: 1.5rem;
+    margin-left: 5px;
+    @include logo-font;
+  }
+
+  &:hover {
+    color: rgb(86, 86, 86);
+  }
+}

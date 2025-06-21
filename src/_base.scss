@@ -61,3 +61,18 @@ $dl: 2560px; // Desktop L
     @content;
   }
 }
+
+$carbon-background: repeating-linear-gradient(
+  -45deg,
+  #1f1f1f 0px,
+  #1f1f1f 5px,
+  #1f1f1f 6px,
+  #171717 11px,
+  #171717 12px
+);
+
+@mixin logo-font {
+  font-family: "Lobster", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
