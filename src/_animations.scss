@@ -15,6 +15,24 @@
   animation: pulse-glow 3s ease-in-out infinite;
 }
 
+@keyframes pulse-glow-thin {
+  0%,
+  100% {
+    box-shadow: rgba(240, 46, 50, 0.4) 1px 1px, rgba(240, 46, 50, 0.3) 2px 2px,
+      rgba(240, 46, 50, 0.2) 3px 3px, rgba(240, 46, 50, 0.1) 4px 4px,
+      rgba(240, 46, 50, 0.05) 5px 5px;
+  }
+  50% {
+    box-shadow: rgba(240, 46, 50, 0.7) 2px 2px, rgba(240, 46, 50, 0.5) 3px 3px,
+      rgba(240, 46, 50, 0.4) 4px 4px, rgba(240, 46, 50, 0.3) 5px 5px,
+      rgba(240, 46, 50, 0.2) 6px 6px;
+  }
+}
+
+@mixin shadow-pulse-thin {
+  animation: pulse-glow-thin 3s ease-in-out infinite;
+}
+
 .carbon-fiber {
   height: 24px;
   width: 100%;

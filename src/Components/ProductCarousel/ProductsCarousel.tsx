@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import { itemType } from '../../db';
 import CustomIcon from "../CustomIcon/CustomIcon";
-import Product from './Product';
+import Product from './ProductCard';
 import './ProductsCarousel.scss';
 
 interface Props {

@@ -1,0 +1,201 @@
+@import "../../theme";
+@import "../../animations";
+@import "../../base";
+
+@mixin cardStyle {
+  border-radius: 17px;
+  background-color: $primary-darker;
+  position: relative;
+  z-index: 2;
+  @include shadow-pulse-thin;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(45deg, black 2px, transparent 10px);
+    border-radius: 17px;
+    z-index: -1;
+  }
+}
+
+.product-wrapper {
+  min-height: 100vh;
+  padding: 58px 20px 50px 20px;
+  background: url("../../Images/product-bg.jpeg");
+  background-size: cover;
+  background-position: center;
+
+  .product {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+
+    @include tb {
+      flex-direction: row;
+    }
+
+    &-rightPanel {
+      order: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      align-items: center;
+      width: 100%;
+
+      @include tb {
+        order: 1;
+      }
+
+      &-name {
+        font-size: 2.5rem;
+        color: white;
+        font-family: "Lobster", sans-serif;
+      }
+
+      &-card1,
+      &-card2 {
+        width: 100%;
+        max-width: 250px;
+        height: 120px;
+        @include cardStyle();
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      &-card1 {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+        order: 2;
+
+        @include tb {
+          order: 1;
+        }
+
+        &:before,
+        &:after {
+          content: "";
+          position: absolute;
+          width: 400px;
+          height: 400px;
+          background: repeating-linear-gradient(
+            45deg,
+            black 2px,
+            transparent 10px
+          );
+          border-radius: 50%;
+          box-shadow: $box-shadow1;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
+        &:before {
+          top: -320px;
+        }
+
+        &:after {
+          bottom: -320px;
+          transform: translateX(-50%) rotate(180deg);
+        }
+
+        &-label {
+          color: white;
+          font-size: 1rem;
+          margin-top: 20px;
+          text-transform: uppercase;
+          font-family: "Anton", sans-serif;
+        }
+
+        &-next,
+        &-previous {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+        &-next {
+          right: 10px;
+        }
+
+        &-previous {
+          left: 10px;
+        }
+      }
+
+      &-card2 {
+        order: 3;
+
+        @include tb {
+          order: 2;
+        }
+      }
+
+      &-purchase {
+        display: flex;
+        gap: 10px;
+        order: 1;
+
+        @include tb {
+          order: 3;
+        }
+      }
+    }
+
+    &-middlePanel {
+      order: 1;
+      width: 100%;
+      max-width: 250px;
+      min-width: 230px;
+      height: 430px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include cardStyle();
+
+      @include tb {
+        order: 2;
+      }
+
+      &-img {
+        width: 190px;
+        height: auto;
+      }
+    }
+
+    &-leftPanel {
+      order: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 50px;
+      width: 100%;
+
+      &-card1,
+      &-card2,
+      &-card3 {
+        width: 100%;
+        max-width: 250px;
+        @include cardStyle();
+      }
+
+      &-card1 {
+        height: 125px;
+      }
+
+      &-card2 {
+        height: 260px;
+      }
+
+      &-card3 {
+        height: 80px;
+      }
+    }
+  }
+}

@@ -19,13 +19,10 @@ export default function MobileNavigation({ menuOpen, toggleMenu }: Props) {
     useEffect(() => {
         function handleClickOutside(event: any) {
 
-            if (!btnRef.current?.contains(event.target)) {
-                toggleMenu(false);
-            }
-            if (menuRef.current?.contains(event.target)) {
+            if (menuRef.current?.contains(event.target) && !btnRef.current?.contains(event.target)) {
                 setTimeout(() => {
                     toggleMenu(false);
-                }, 0);
+                }, 100);
             }
 
         }
@@ -49,7 +46,7 @@ export default function MobileNavigation({ menuOpen, toggleMenu }: Props) {
                 <li className='mobileNav-menu-item'>
                     {pathname === "#products" && <div className="mobileNav-menu-item-active" />}
                     <CustomIcon name="products" size={20} />
-                    <div onClick={(e) => scrollToProducts(e, pathname, navigate)} className='mobileNav-menu-item-link'>Products</div>
+                    <Link to={`/#products`} className='mobileNav-menu-item-link'>Products</Link>
                 </li>
                 <div className="mobileNav-menu-dot" />
                 <li className='mobileNav-menu-item'>

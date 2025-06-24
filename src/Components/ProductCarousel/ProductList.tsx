@@ -1,7 +1,7 @@
 import React from 'react'
-import './ProductList.scss'
 import { itemType } from '../../db'
-import Product from './Product'
+import Product from './ProductCard'
+import './ProductList.scss'
 
 interface Props {
     products: itemType[]

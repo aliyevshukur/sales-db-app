@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './Routes/App';
-import reportWebVitals from './reportWebVitals';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import ErrorPage from './Routes/ErrorPage/ErrorPage';
-import RecieptPage from './Routes/RecieptPage/RecieptPage';
-import Home from './Routes/Home/Home';
+import './index.css';
+import reportWebVitals from './reportWebVitals';
 import About from './Routes/About/About';
+import App from './Routes/App';
+import ErrorPage from './Routes/ErrorPage/ErrorPage';
+import Home from './Routes/Home/Home';
+import Product from './Routes/Product/Product';
+import RecieptPage from './Routes/RecieptPage/RecieptPage';
 
 const router = createBrowserRouter([
   {
@@ -30,10 +31,13 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <About />
+      },
+      {
+        path: "/product/:productId",
+        element: <Product />
       }
     ]
   },
-
 
 ]);
 

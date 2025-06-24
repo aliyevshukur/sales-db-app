@@ -1,8 +1,9 @@
 import 'animate.css/animate.min.css';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import HomeBenefits from '../../Components/HomeBenefits/HomeBenefits';
-import ProductsCarousel from '../../Components/Products/ProductsCarousel';
+import ProductsCarousel from '../../Components/ProductCarousel/ProductsCarousel';
 import ShopButton from '../../Components/ShopButton/ShopButton';
 import { addSingleItem, getData, itemType } from '../../db';
 import HeroImage from '../../Images/home-hero.png';
@@ -19,7 +20,22 @@ function Home() {
   const [cartItems, setCartItems] = useContext(CartContext);
   const subtitleText = "Unleash the Sound. Elevate Your Experience."
   const { letterSpacing: subtitleLetterSpacing, containerRef: subtitleContainerRef, textRef: subtitleTextRef } = useStretchLetterSpacing(subtitleText);
+  const { pathname, hash } = useLocation();
 
+  useEffect(() => {
+    if (hash) {
+      const scrollToElement = () => {
+        const el = document.querySelector(location.hash);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      };
+
+      const timeout = setTimeout(scrollToElement, 300);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [hash]);
 
   useEffect(() => {
     if (dbStatus === 'open') {
@@ -68,8 +84,6 @@ function Home() {
             <div className="home-hero-text-title">SPEAKERS</div>
             <div className="home-hero-text-subtitle">Discover premium speakers that bring your music to life.</div>
             <ShopButton />
-
-
           </div>
           <img src={HeroImage} alt="" className="home-hero-image" />
         </div>

@@ -71,8 +71,30 @@ $carbon-background: repeating-linear-gradient(
   #171717 12px
 );
 
+$metalic-bg: linear-gradient(
+  45deg,
+  #999 5%,
+  #fff 10%,
+  #ccc 30%,
+  #ddd 50%,
+  #ccc 70%,
+  #fff 80%,
+  #999 95%
+);
+
+$box-shadow1: rgba(146, 146, 153, 0.25) 0px 13px 27px -18px,
+  rgba(139, 131, 131, 0.3) 0px 8px 16px -8px;
+
 @mixin logo-font {
   font-family: "Lobster", sans-serif;
   font-weight: 400;
   font-style: normal;
+}
+
+@mixin buttonActive {
+  &:active {
+    box-shadow: inset 0px 3px 7px #545454;
+    top: 51%;
+    opacity: 0.5;
+  }
 }

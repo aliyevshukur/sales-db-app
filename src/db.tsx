@@ -10,66 +10,66 @@ import Speaker9 from "./Images/speaker-9.png";
 
 const SHOPITEMS_DATA = [
     {
-        itemId: 1,
+        id: "1",
         name: "EchoSlate",
         price: "$299",
         img: Speaker1
     },
     {
-        itemId: 2,
+        id: "2",
         name: "SoundNest",
         price: "$199",
         img: Speaker2
 
     },
     {
-        itemId: 3,
+        id: "3",
         name: "PulseWave",
         price: "$249",
         img: Speaker3
     },
     {
-        itemId: 4,
+        id: "4",
         name: "SonicForm",
         price: "$279",
         img: Speaker4
     },
     {
-        itemId: 5,
+        id: "5",
         name: "AeroSound",
         price: "$329",
         img: Speaker5
     },
     {
-        itemId: 6,
+        id: "6",
         name: "VibeCraft",
         price: "$399",
         img: Speaker6
     },
     {
-        itemId: 7,
+        id: "7",
         name: "NuWave",
         price: "$249",
         img: Speaker7
     },
     {
-        itemId: 8,
+        id: "8",
         name: "ClarityCube",
         price: "$349",
         img: Speaker8
     },
     {
-        itemId: 9,
+        id: "0",
         name: "SilhouetteAudio",
         price: "$279",
         img: Speaker9
     },
 ];
 
-const version = 5;
+const version = 1;
 
 export interface itemType {
-    id: number,
+    id: string,
     name: string,
     price: string,
     img: string
@@ -98,7 +98,7 @@ export function initDB(): Promise<string> {
 
         request.onupgradeneeded = function (event: any) {
             db = request.result;
-            const shopItemsStore = db.createObjectStore("shopItemsStore", { keyPath: "itemId" });
+            const shopItemsStore = db.createObjectStore("shopItemsStore", { keyPath: "id", autoIncrement: true });
             const cartItemsStore = db.createObjectStore("cartItemsStore", { keyPath: "id", autoIncrement: true });
             const recieptsStore = db.createObjectStore("recieptsStore", { keyPath: "id", autoIncrement: true });
         };
@@ -182,6 +182,34 @@ export function getData(storeName: string): Promise<any> {
 
     })
 
+}
+
+export function getSingleProduct(storeName: string, productId: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+        const request = indexedDB.open('appDatabase', version);
+        let db: IDBDatabase;
+        let data: itemType[];
+
+        request.onsuccess = function () {
+            db = request.result;
+            let transaction = db.transaction(storeName, 'readonly');
+            let objectStore = transaction.objectStore(storeName);
+            let txRequest = objectStore.get(productId);
+
+            txRequest.onsuccess = function () {
+                data = txRequest.result;
+                resolve(data);
+            }
+
+            txRequest.onerror = function (error) {
+                reject(`Error to get product ${error}`)
+            }
+        }
+
+        request.onerror = function () {
+            reject("Failed to get store data")
+        }
+    })
 }
 
 export function deleteStore(storeName: string): void {

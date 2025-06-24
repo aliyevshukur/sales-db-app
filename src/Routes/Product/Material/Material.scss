@@ -1,0 +1,33 @@
+.material {
+  width: 100px;
+  height: 100px;
+}
+
+.carbon {
+  background: repeating-conic-gradient(#222 0% 25%, #111 0% 50%);
+  background-size: 8px 8px;
+}
+
+.brushedMetal {
+  background: linear-gradient(90deg, #ccc 0%, #999 50%, #ccc 100%);
+  background-size: 100% 4px;
+}
+
+.matteBlack {
+  background: #121212;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.silicone {
+  background: radial-gradient(#2b2b2b, #1a1a1a);
+}
+
+.glossyPlastic {
+  background: linear-gradient(145deg, #444, #222);
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.metalMesh {
+  background: radial-gradient(#999 1px, transparent 1px);
+  background-size: 8px 8px;
+}

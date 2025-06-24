@@ -10,41 +10,9 @@ interface Props {
 
 export default function Navigation({ }: Props) {
     const { pathname } = useLocation();
-    const menuRef = useRef<HTMLElement>(null);
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        function handleClickOutside(event: any) {
-            if (!menuRef.current?.contains(event.target)) {
-                // toggleMenu();
-            }
-        }
-
-        document.addEventListener('mousedown', handleClickOutside);
-
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        }
-    }, [])
-
-    function scrollToProducts(event: React.MouseEvent<HTMLDivElement>, pathname: string) {
-        event.preventDefault();
-        if (pathname !== "/") {
-            navigate("/");
-        }
-        const productsElement = document.getElementById("products");
-        if (productsElement) {
-            window.scrollTo({
-                top: productsElement.offsetTop,
-                behavior: "smooth",
-            });
-        }
-    }
-
-
 
     return (
-        <nav className='nav' ref={menuRef}>
+        <nav className='nav' >
             <ul className="nav-menu" >
                 <li className={`nav-menu-item ${pathname === "/" && "nav-menu-item-active"}`}>
                     {pathname === "/" && <div className="" />}
@@ -55,7 +23,7 @@ export default function Navigation({ }: Props) {
 
                 <li className='nav-menu-item'>
                     <CustomIcon name="products" size={20} />
-                    <div onClick={(e) => scrollToProducts(e, pathname)} className='nav-menu-item-link'>Products</div>
+                    <Link to={`/#products`} className='nav-menu-item-link'>Products</Link>
                 </li>
                 <div className="nav-menu-dot" />
 
