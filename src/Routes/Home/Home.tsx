@@ -69,7 +69,6 @@ function Home() {
   if (dbStatus === "pending") {
     return <div>Loading...</div>
   }
-  console.log("TEST: " + subtitleLetterSpacing)
   return (
     <div className="home-wrapper">
       <div className="home-wrapper-background">

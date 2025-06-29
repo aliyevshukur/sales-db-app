@@ -41,4 +41,13 @@
   .slick-dots li.slick-active button:before {
     color: $secondary;
   }
+
+  .slick-slide {
+    cursor: pointer;
+  }
+
+  .slick-slider .slick-slide {
+    display: flex;
+    justify-content: center;
+  }
 }

@@ -16,7 +16,6 @@ export default function Header() {
     const cartCount = cartItems.length;
     const cartRef = useRef<HTMLDivElement>(null);
     const buttonRef = useRef<HTMLDivElement>(null);
-    console.log(`cart open ${cartOpen}`)
 
 
     useEffect(() => {

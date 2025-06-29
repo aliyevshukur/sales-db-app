@@ -1,13 +1,8 @@
-@import "../../../base";
+@import "../../base";
 
 .slideButton {
-  width: 24px;
-  height: 24px;
   border-radius: 50%;
   background: $metalic-bg;
-  border: none;
-  margin: 0;
-  padding: 0;
   cursor: pointer;
   @include buttonActive;
 }

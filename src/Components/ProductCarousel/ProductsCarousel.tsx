@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import { itemType } from '../../db';
 import CustomIcon from "../CustomIcon/CustomIcon";
+import SlideButton from "../SlideButton/SlideButton";
 import Product from './ProductCard';
 import './ProductsCarousel.scss';
 
@@ -56,8 +57,8 @@ export default function ProductsCarousel({ products, onPurchase }: Props) {
         swipeToSlide: true,
         speed: 500,
         cssEase: "ease-in-out",
-        nextArrow: <NextArrow />,
-        prevArrow: <PrevArrow />,
+        nextArrow: <SlideButton type="next" iconSize={32} customClass="custom-nextArrow" />,
+        prevArrow: <SlideButton type="previous" iconSize={32} customClass="custom-prevArrow" />,
         responsive: [
             {
                 breakpoint: 768,
@@ -85,12 +86,14 @@ export default function ProductsCarousel({ products, onPurchase }: Props) {
 
 
     return (
-        <Slider {...settings} className="product-slider" ref={slider => {
-            sliderRef = slider;
-        }}>
-            {products.map((product, index) =>
-                <Product key={index} product={product} onPurchase={onPurchase}
-                />)}
-        </Slider>
+        <div className="product-slider">
+            <Slider {...settings} ref={slider => {
+                sliderRef = slider;
+            }}>
+                {products.map((product, index) =>
+                    <Product key={index} product={product} onPurchase={onPurchase}
+                    />)}
+            </Slider>
+        </div>
     );
 }

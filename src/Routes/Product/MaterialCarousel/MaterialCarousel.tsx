@@ -2,15 +2,19 @@ import { useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import SliderButton from '..//SlideButton/SlideButton';
+import SliderButton from '../../../Components/SlideButton/SlideButton';
 import Material from "../Material/Material";
 import './MaterialCarousel.scss';
 
-function MaterialCarousel() {
+interface Props {
+    updateMaterialName: (currentIndex: number) => void;
+    materials: string[]
+}
+
+function MaterialCarousel({ updateMaterialName, materials }: Props) {
 
     let materialSliderRef: any = useRef(null);
 
-    const materials = ["carbon", "brushedMetal", "matteBlack", "silicone", "glossyPlastic", "metalMesh"]
 
     const settings = {
         infinite: true,
@@ -21,17 +25,18 @@ function MaterialCarousel() {
         swipeToSlide: true,
         speed: 500,
         cssEase: "ease-in-out",
-        nextArrow: <SliderButton type="next" />,
-        prevArrow: <SliderButton type="previous" />,
+        nextArrow: <SliderButton type="next" customClass={"custom-nextArrow"} />,
+        prevArrow: <SliderButton type="previous" customClass={"custom-prevArrow"} />,
+        afterChange: updateMaterialName
     };
 
-    return <Slider {...settings} className="material-caousel" ref={slider => {
-        materialSliderRef = slider;
-    }}>
-        {materials.map((material) =>
-            <Material name={material} />
-        )}
-    </Slider>
+    return (<div className="material-carousel">
+        <Slider {...settings} ref={slider => { materialSliderRef = slider; }}>
+            {materials.map((material) => {
+                return <Material name={material} />
+            })}
+        </Slider>
+    </div>)
 }
 
 export default MaterialCarousel

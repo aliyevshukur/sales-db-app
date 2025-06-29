@@ -13,7 +13,6 @@ function useStretchLetterSpacing(text: string) {
             textRef.current.style.letterSpacing = "0px";
             const textWidth = textRef?.current?.scrollWidth;
             const lettersCount = text.length;
-            console.log(`Container width: ${containerWidth}, Text width: ${textWidth}`)
 
             if (lettersCount <= 1) {
                 setLetterSpacing(0);
