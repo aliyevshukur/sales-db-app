@@ -23,12 +23,14 @@
   color: white;
   height: fit-content;
   max-height: 800px;
-  width: 350px;
-  margin: 32px;
-  padding: 10px;
 
-  @include ms {
-    width: 250px;
+  width: 250px;
+  padding: 10px;
+  margin: 32px;
+
+  @include mm {
+    width: 350px;
+    padding: 20px;
   }
 
   &-open {
@@ -54,6 +56,7 @@
 
 .checkoutButton {
   margin-left: 20px;
+  background-color: $active-button;
 }
 
 .totalPrice {

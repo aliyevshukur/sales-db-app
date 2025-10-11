@@ -4,7 +4,7 @@
 .footer-wrapper {
   background-color: #333;
   color: #fff;
-  padding: 24px 12px;
+  padding: 24px;
 
   .footer {
     max-width: 100%;
@@ -12,31 +12,53 @@
 
     &-links {
       display: flex;
-      justify-content: space-around;
+      flex-direction: column;
+      gap: 30px;
       font-size: 0.8rem;
       margin-top: 20px;
+
+      @include tb {
+        flex-direction: row;
+        justify-content: space-around;
+      }
 
       &-row {
         display: flex;
         flex-direction: column;
-        margin-bottom: 20px;
-        & a:visited {
-          color: #fff;
-        }
-        & li {
-          & a {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-          }
-          margin-bottom: 5px;
-        }
+        gap: 8px;
 
-        &-title {
-          font-weight: 700;
-          margin-bottom: 5px;
+        & ul {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          & li {
+            color: rgb(186, 186, 186);
+            & a {
+              display: flex;
+              align-items: center;
+              gap: 5px;
+              text-decoration: none;
+              color: inherit;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+            margin-bottom: 5px;
+          }
+
+          &-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+          }
         }
       }
+    }
+
+    &-line {
+      height: 2px;
+      width: 100%;
+      background-color: $title-color;
+      margin: 20px 0px;
     }
   }
 }

@@ -1,17 +1,30 @@
-import React from 'react'
-import './Button.css'
+import React from "react";
+import "./Button.css";
 
 interface Props {
-    title: string
-    className?: string
-    onClick?: () => void
-    bgColor?: string
+  title: string;
+  className?: string;
+  style?: {} | undefined;
+  onClick?: (e: any) => void;
+  bgColor?: string;
 }
 
-export default function Button({ title, className, onClick, bgColor }: Props) {
-    let style = { backgroundColor: bgColor };
+export default function Button({
+  title,
+  className,
+  style,
+  onClick,
+  bgColor,
+}: Props) {
+  let customStyle = { backgroundColor: bgColor, ...style };
 
-    return (
-        <div style={style} className={`button ${className}`} onClick={onClick}>{title}</div>
-    )
+  return (
+    <div
+      style={customStyle}
+      className={`${className} button`}
+      onClick={onClick}
+    >
+      {title}
+    </div>
+  );
 }

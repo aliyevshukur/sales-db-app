@@ -1,95 +1,62 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import '../../_animations.scss';
-import Button from '../../Components/Button/Button';
-import { getSingleProduct, itemType } from '../../db';
-import { splitAtFirstUppercase } from '../../lib/Utils/splitAtFirstUppercase';
-import MaterialCarousel from './MaterialCarousel/MaterialCarousel';
-import './Product.scss';
-
-
+import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { text } from "stream/consumers";
+import "../../_animations.scss";
+import Button from "../../Components/Button/Button";
+import { getSingleProduct, handleOnPurchase, itemType } from "../../db";
+import { CartContext } from "../App";
+import Features from "./Components/Features/Features";
+import FrequencyCard from "./Components/FrequencyCard/FrequencyCard";
+import MaterialCard from "./Components/MaterialCard/MaterialCard";
+import "./Product.scss";
 
 function Product() {
-    const { productId } = useParams();
-    const [productData, setProductData] = useState<itemType>();
-    const materials = ["carbon", "brushedMetal", "matteBlack", "silicone", "glossyPlastic", "metalMesh"]
-    const [materialName, setMaterialName] = useState<string>(materials[0]);
+  const { productId } = useParams();
+  const [productData, setProductData] = useState<itemType>([] as any);
+  const [cartItems, setCartItems] = useContext<itemType[]>(CartContext);
 
-
-
-    useEffect(() => {
-        if (productId) {
-            getSingleProduct("shopItemsStore", productId)
-                .then((data) => {
-                    setProductData(data);
-                })
-                .catch((error) => {
-                    console.error(error);
-                })
-        }
-    }, [productId])
-
-    function updateMaterialName(currentIndex: number) {
-        const rawName = materials[currentIndex];
-        const name = splitAtFirstUppercase(rawName)
-        setMaterialName(name);
+  useEffect(() => {
+    if (productId) {
+      getSingleProduct("shopItemsStore", productId)
+        .then((data) => {
+          setProductData(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
+  }, [productId]);
 
-    return <div className='product-wrapper'>
-        <div className="product">
-            <div className="product-leftPanel">
-                <div className="product-leftPanel-name">{productData?.name}</div>
-                <div className="product-leftPanel-card1">
-                    <div className="product-leftPanel-card1-label">Pick material</div>
-                    <MaterialCarousel updateMaterialName={updateMaterialName} materials={materials} />
-                    <div className="product-leftPanel-card1-name">{materialName}</div>
-                </div>
-                <div className="product-leftPanel-card2">
-                    <div className="product-leftPanel-card2-title">
-                        Frequency response
-                    </div>
-                    <div className="product-leftPanel-card2-subtitle">
-                        Wide range
-                    </div>
-                    <div className="product-leftPanel-card2-frequency">
-                        <span>20HZ</span>
-                        <div className="product-leftPanel-card2-frequency-visual frequency-animation">
-                            <span /><span /><span /><span /><span /><span /><span /><span /><span /><span /><span /><span />
-                        </div>
-                        <span>20kHZ</span>
-                    </div>
-                </div>
-                <div className="product-leftPanel-purchase">
-                    <Button title="Add to card" />
-                    <Button title="Chekout" bgColor='#922220' />
-                </div>
-            </div>
-            <div className="product-middlePanel">
-                <div className="product-middlePanel-rightLine"></div>
-                <img src={productData?.img} alt="product image" className="product-middlePanel-img" />
-                <div className="product-middlePanel-leftLine"></div>
-
-            </div>
-            <div className="product-rightPanel">
-                <div className="product-rightPanel-card1">
-                    <div className="pulse-top-left">
-                        <span /><span /><span />
-                    </div>
-                    <div className="pulse-top-right">
-                        <span /><span /><span />
-                    </div>
-                    <div className="pulse-bottom-left">
-                        <span /><span /><span />
-                    </div>
-                    <div className="pulse-bottom-right">
-                        <span /><span /><span />
-                    </div>
-                </div>
-                <div className="product-rightPanel-card2"></div>
-                <div className="product-rightPanel-card3"></div>
-            </div>
+  return (
+    <div className='product-wrapper'>
+      <div className='product'>
+        <div className='product-leftPanel'>
+          <div className='product-leftPanel-name'>{productData?.name}</div>
+          <MaterialCard />
+          <FrequencyCard />
+          <Button
+            title='Add to card'
+            className='product-leftPanel-purchase'
+            onClick={() => handleOnPurchase(productData, setCartItems)}
+          />
         </div>
+        <div className='product-middlePanel'>
+          <div className='product-middlePanel-rightLine'></div>
+          <img
+            src={productData?.img}
+            alt='product image'
+            className='product-middlePanel-img'
+          />
+          <div className='product-middlePanel-leftLine'></div>
+        </div>
+        <div className='product-rightPanel'>
+          <div className='product-rightPanel-dolby'></div>
+          <Features />
+          <div className='product-rightPanel-alexa'></div>
+        </div>
+      </div>
     </div>
+  );
 }
 
 export default Product;

@@ -1,0 +1,23 @@
+@import "../../Product.scss";
+
+.features {
+  @include cardStyle();
+  height: 290px;
+  padding: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &-item {
+    &-title {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    &-desc {
+      color: grey;
+      line-height: normal;
+    }
+  }
+}
