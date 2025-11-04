@@ -6,6 +6,7 @@ import About from "./Routes/About/About";
 import App from "./Routes/App";
 import ErrorPage from "./Routes/Error/ErrorPage";
 import Home from "./Routes/Home/Home";
+import Payment from "./Routes/Payment/Payment";
 import Product from "./Routes/Product/Product";
 import RecieptPage from "./Routes/RecieptPage/RecieptPage";
 
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/product/:productId",
         element: <Product />,
+      },
+      {
+        path: "/payment",
+        element: <Payment />,
       },
     ],
   },

@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Button.css";
 
 interface Props {
@@ -7,6 +8,7 @@ interface Props {
   style?: {} | undefined;
   onClick?: (e: any) => void;
   bgColor?: string;
+  to?: string;
 }
 
 export default function Button({
@@ -15,14 +17,21 @@ export default function Button({
   style,
   onClick,
   bgColor,
+  to,
 }: Props) {
   let customStyle = { backgroundColor: bgColor, ...style };
+  const navigate = useNavigate();
+
+  function handleOnClick(e: any) {
+    if (onClick) onClick(e);
+    if (to) navigate(to);
+  }
 
   return (
     <div
       style={customStyle}
       className={`${className} button`}
-      onClick={onClick}
+      onClick={handleOnClick}
     >
       {title}
     </div>

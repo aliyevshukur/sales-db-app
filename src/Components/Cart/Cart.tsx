@@ -74,11 +74,7 @@ const Cart = forwardRef<HTMLDivElement, Props>(
         )}
         <div className='buttonWrapper'>
           <Button title={"Clear"} onClick={handleOnClear} />
-          <Button
-            title={"Checkout"}
-            onClick={handleCheckout}
-            className='checkoutButton'
-          />
+          <Button title={"Checkout"} className='checkoutButton' to='payment' />
         </div>
       </div>
     );

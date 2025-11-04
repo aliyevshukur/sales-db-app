@@ -1,0 +1,5 @@
+@use "../Payment.scss" as *;
+
+.checkoutForm {
+  @include box-style;
+}

@@ -1,0 +1,25 @@
+@use "../../theme" as *;
+
+.payment {
+  min-height: 100vh;
+  background-color: $primary;
+  color: white;
+  padding-top: 58px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  &-left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@mixin box-style {
+  background-color: $primary-darker;
+  min-width: 300px;
+  min-height: 50px;
+}

@@ -1,0 +1,5 @@
+@use "../Payment.scss" as *;
+
+.orderSummary {
+  @include box-style;
+}

@@ -2,6 +2,7 @@
 @use "../../base" as *;
 
 .product-slider {
+  width: 100%;
   .custom-prevArrow,
   .custom-nextArrow {
     position: absolute;
@@ -45,7 +46,9 @@
   .slick-slide {
     cursor: pointer;
   }
-
+  .slick-slider {
+    width: 100%;
+  }
   .slick-slider .slick-slide {
     display: flex;
     justify-content: center;

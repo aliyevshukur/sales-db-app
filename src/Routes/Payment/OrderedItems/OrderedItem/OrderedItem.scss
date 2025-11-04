@@ -1,0 +1,58 @@
+@use "../../../../base" as *;
+@use "../../../../theme" as *;
+
+.orderedItem {
+  display: flex;
+  gap: 10px;
+  padding: 20px;
+  box-shadow: $box-shadow1;
+  background-color: $primary;
+  position: relative;
+
+  &-img {
+    width: 40px;
+    height: auto;
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    &-top {
+      &-name {
+        display: inline-block;
+        margin-bottom: 7px;
+        font-size: 1.1rem;
+        align-self: flex-start;
+        &::after {
+          content: "";
+          display: block;
+          width: 100%;
+          height: 1px;
+          background-color: $secondary;
+        }
+      }
+
+      &-material {
+        color: grey;
+      }
+
+      &-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+    }
+
+    &-bottom {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+
+      &-price {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}

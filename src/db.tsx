@@ -9,6 +9,12 @@ import Speaker7 from "./Images/speaker-7.png";
 import Speaker8 from "./Images/speaker-8.png";
 import Speaker9 from "./Images/speaker-9.png";
 
+// IndexDB structure:
+//  |-appDatabase
+//     |- cartItemsStore
+//     |- recieptsStore
+//     |- shopItemsStore
+
 const SHOPITEMS_DATA = [
   {
     id: "1",
@@ -65,7 +71,6 @@ const SHOPITEMS_DATA = [
     img: Speaker9,
   },
 ];
-
 const version = 1;
 
 export interface itemType {
@@ -323,4 +328,29 @@ export function updateDB(
     .catch((error) => {
       console.error(error);
     });
+}
+
+export function removeCartItem(id: string): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open("appDatabase", version);
+    let db: IDBDatabase;
+
+    request.onsuccess = function () {
+      db = request.result;
+      const transaction = db.transaction("cartItemsStore", "readwrite");
+      const objectStore = transaction.objectStore("cartItemsStore");
+      const deleteRequest = objectStore.delete(id);
+      deleteRequest.onsuccess = function () {
+        console.log(`Removed item with id: ${id}`);
+        resolve();
+      };
+      deleteRequest.onerror = function () {
+        reject(`Failed to remove item with id: ${id}`);
+      };
+    };
+
+    request.onerror = function () {
+      reject("Failed to open database");
+    };
+  });
 }

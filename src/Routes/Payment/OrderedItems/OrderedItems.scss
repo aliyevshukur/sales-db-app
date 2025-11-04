@@ -1,0 +1,15 @@
+@use "../Payment.scss" as *;
+
+.orderedItems {
+  @include box-style;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.orderedItems-empty {
+  @include box-style;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: grey;
+}

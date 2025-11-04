@@ -77,6 +77,26 @@ const CustomIcon = ({ name, size = 24 }: Props) => {
           <path d='M441-120v-86q-53-12-91.5-46T293-348l74-30q15 48 44.5 73t77.5 25q41 0 69.5-18.5T587-356q0-35-22-55.5T463-458q-86-27-118-64.5T313-614q0-65 42-101t86-41v-84h80v84q50 8 82.5 36.5T651-650l-74 32q-12-32-34-48t-60-16q-44 0-67 19.5T393-614q0 33 30 52t104 40q69 20 104.5 63.5T667-358q0 71-42 108t-104 46v84z' />
         </svg>
       );
+    case "close":
+      return (
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          x='0px'
+          y='0px'
+          width={size}
+          height={size}
+          viewBox='0 0 48 48'
+        >
+          <path
+            fill='#f44336'
+            d='M36,8.4l3.5,3.5L12,39.6L8.4,36L36,8.4z'
+          ></path>
+          <path
+            fill='#f44336'
+            d='M39.6,36L36,39.6L8.4,12L12,8.4L39.6,36z'
+          ></path>
+        </svg>
+      );
     default:
       return <div></div>;
   }
