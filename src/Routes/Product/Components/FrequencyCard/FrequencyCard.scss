@@ -1,4 +1,5 @@
-@import "../../Product.scss";
+@use "../../Product.scss" as *;
+@use "../../../../base" as *;
 
 .frequencyCard {
   @include cardStyle();

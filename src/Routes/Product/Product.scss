@@ -1,6 +1,6 @@
-@import "../../theme";
-@import "../../animations";
-@import "../../base";
+@use "../../theme" as *;
+@use "../../animations" as *;
+@use "../../base" as *;
 
 @mixin cardStyle {
   width: 100%;

@@ -1,5 +1,5 @@
-@import "../../base";
-@import "../../theme";
+@use "../../base" as *;
+@use "../../theme" as *;
 
 .header {
   height: 58px;

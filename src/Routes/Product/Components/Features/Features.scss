@@ -1,4 +1,4 @@
-@import "../../Product.scss";
+@use "../../Product.scss" as *;
 
 .features {
   @include cardStyle();

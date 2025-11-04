@@ -1,4 +1,4 @@
-@import "../../../_base.scss";
+@use "../../../_base.scss" as *;
 
 .about-section-2-item {
   display: flex;

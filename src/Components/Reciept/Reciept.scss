@@ -1,5 +1,5 @@
-@import "../../_base.scss";
-@import "../../_theme.scss";
+@use "../../_base.scss" as *;
+@use "../../_theme.scss" as *;
 
 .reciept {
   display: flex;
